@@ -1,5 +1,5 @@
 <?php
-namespace src\Database;
+namespace App\Database;
 
 use mysqli;
 class Database {
@@ -7,7 +7,6 @@ class Database {
     private $nombrebd = 'greend';
     private $usuario = 'root';
     private $contraseña = '';
-    private $resultado ;
     private $conn;
 
     function abrir(){
@@ -18,14 +17,8 @@ class Database {
         }else{
             echo "Conexion exitosa a la base de datos.<br>";
         }
-    }
 
-    function ejecutar($sentencia){
-        $this -> resultado = $this -> conn -> query($sentencia);
-    }
-
-    function cerrar(){
-        $this -> conn -> close();
+        return $this ->conn;
     }
 }
 
