@@ -14,8 +14,6 @@ class Database {
 
         if($this->conn ->connect_error){
             die("Error en la conexion: ". $this-> conn -> connect_error);
-        }else{
-            echo "Conexion exitosa a la base de datos.<br>";
         }
 
         return $this ->conn;
