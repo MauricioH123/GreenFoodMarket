@@ -4,12 +4,57 @@ namespace App\Views;
 
 class ProductoCrearView extends BaseView
 {
-    public function render()
+    public function render($mensaje)
     {
         ob_start();
 ?>
         <div class="container">
             <h1>Crear Producto</h1>
+
+            <?php
+            switch ($mensaje) {
+                case "Error: ID del proveedor invalido":
+            ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><?php echo $mensaje; ?></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                    break;
+
+                case "Error: El nombre del producto es inválido":
+                ?>
+
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><?php echo $mensaje; ?></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                    break;
+
+                case "Error: El precio de venta no es válido":
+                ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><?php echo $mensaje; ?></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                    break;
+
+                case "Producto creado exitosamente":
+                ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><?php echo $mensaje; ?></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            <?php
+                    break;
+
+                default:
+                    // Otras posibles condiciones que quieras manejar
+                    break;
+            }
+            ?>
             <form action="index.php?action=crearP" method="post">
                 <div class="mb-3">
                     <label for="idProveedor" class="form-label">Id del Proveedor</label>
