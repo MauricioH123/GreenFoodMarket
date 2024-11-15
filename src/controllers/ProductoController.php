@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\Logica\ProductoService;
 use App\Views\ProductosLista;
 
+
 class ProductoController{
     private $productoService;
     private $view;

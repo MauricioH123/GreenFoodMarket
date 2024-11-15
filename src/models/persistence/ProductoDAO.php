@@ -22,6 +22,20 @@ class ProductoDAO{
         while($row = $resultado -> fetch_assoc()){
             $productos[] = new Producto($row['id_producto'], $row['id_proveedor'],$row['Nombre_producto'], $row['precio_venta']);
         }
+        $stmt->close();
         return $productos;
+    }
+
+    public function crearProductos($id_proveedor, $nombre_producto, $precio_venta){
+        $query = "CALL insertar_producto(?,?,?);";
+        $stmt = $this -> conn -> prepare($query);
+        $stmt -> bind_param("isi", $id_proveedor, $nombre_producto, $precio_venta);
+        if($stmt -> execute()){
+            $stmt->close();
+            return "Registro creado";
+        }else{
+            $stmt->close();
+            return "Fallo el registro";
+        }
     }
 }

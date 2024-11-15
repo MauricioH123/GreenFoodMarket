@@ -30,7 +30,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Editar productos</a></li>
+                                <li><a class="dropdown-item" href="index.php?action=crearP">Crear un producto</a></li>
                             </ul>
                         </li>
                     </ul>
