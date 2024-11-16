@@ -5,7 +5,7 @@ class ProductosLista extends BaseView{
     public function render($productos){
         ob_start();
     ?>
-     <div class="container">
+     <!-- <div class="container"> -->
             <h1>Productos en la tienda</h1>
             <table class="table table-striped">
                 <thead>

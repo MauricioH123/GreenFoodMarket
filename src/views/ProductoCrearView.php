@@ -72,11 +72,17 @@ class ProductoCrearView extends BaseView
                 <div class="mb-3">
                     <label for="nombreProducto" class="form-label">Nombre del Producto</label>
                     <input type="text" id="nombreProducto" name="nombre_producto" class="form-control" required>
+                    <div id="idHelp" class="form-text">
+                        Por favor, ingrese el nombre del producto.
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="precioVenta" class="form-label">Precio de Venta</label>
                     <input type="number" step="0.01" id="precioVenta" name="precio_venta" class="form-control" required>
+                    <div id="idHelp" class="form-text">
+                        Por favor, ingrese el precio de venta del producto.
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Guardar Producto</button>
