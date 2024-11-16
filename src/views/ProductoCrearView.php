@@ -50,7 +50,7 @@ class ProductoCrearView extends BaseView
             <?php
                     break;
 
-                default:
+                case "Error: el Id del proveedor no existe.":
                 ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong><?php echo $mensaje; ?></strong>

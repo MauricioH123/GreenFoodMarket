@@ -50,7 +50,7 @@ class ProductoDAO{
                 return "Fallo al crear el producto";
             }
         }catch(\mysqli_sql_exception $e){
-            return "Error el Id del proveedor no existe.";
+            return "Error: el Id del proveedor no existe.";
         }
 
     }
