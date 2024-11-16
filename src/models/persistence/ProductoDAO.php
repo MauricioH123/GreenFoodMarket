@@ -3,6 +3,8 @@ namespace App\models\persistence;
 use App\Database\Database;
 use App\Models\Entidades\Producto;
 
+require_once"/laragon/www/greend-food/vendor/autoload.php";
+
 class ProductoDAO{
     private $conn;
     
@@ -33,21 +35,42 @@ class ProductoDAO{
     }
 
     public function crearProductos($id_proveedor, $nombre_producto, $precio_venta){
-
-        $id_proveedor = $this -> sanitizeMysql($this ->conn,$id_proveedor);
-        $nombre_producto = $this -> sanitizeMysql($this ->conn,$nombre_producto);
-        $precio_venta = $this -> sanitizeMysql($this ->conn,$precio_venta);
-
-        $query = "CALL insertar_producto(?,?,?);";
-        $stmt = $this -> conn -> prepare($query);
-        $stmt -> bind_param("isi", $id_proveedor, $nombre_producto, $precio_venta);
-
-        if($stmt -> execute()){
-            $stmt->close();
-            return "Registro creado";
-        }else{
-            $stmt->close();
-            return "Fallo el registro";
+        try{
+            $id_proveedor = $this -> sanitizeMysql($this ->conn,$id_proveedor);
+            $nombre_producto = $this -> sanitizeMysql($this ->conn,$nombre_producto);
+            $precio_venta = $this -> sanitizeMysql($this ->conn,$precio_venta);
+    
+            $query = "CALL insertar_producto(?,?,?);";
+            $stmt = $this -> conn -> prepare($query);
+            $stmt -> bind_param("isi", $id_proveedor, $nombre_producto, $precio_venta);
+    
+            if($stmt -> execute()){
+                $stmt->close();
+                return "Producto creado exitosamente";
+            }else{
+                $stmt->close();
+                return "Fallo al crear el producto";
+            }
+        }catch(\mysqli_sql_exception $e){
+            return "Error el Id del proveedor no existe.";
         }
+
+    }
+
+    public function eliminarProducto($id_producto){
+        $query = "CALL eliminar_producto(?);";
+        $stmt = $this -> conn -> prepare($query);
+        $stmt -> bind_param("i", $id_producto);
+        if ($stmt -> execute()) {
+            $stmt -> close();
+            return "Producto eliminado";
+        }else{
+            $stmt -> close();
+            return "Fallo al eliminar el producto";
+        }
+
     }
 }
+
+// $p = new ProductoDAO();
+// echo $p -> crearProductos(50, "sdjf", 500);

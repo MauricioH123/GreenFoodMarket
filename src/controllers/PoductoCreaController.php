@@ -37,6 +37,6 @@ class PoductoCreaController{
         }
 
         $creaP = $this-> productoService ->crearProducto($id_proveedor, $nombre_producto, $precio_venta);
-        $this ->view ->render("Producto creado exitosamente");
+        $this ->view ->render($creaP);
     }
 }

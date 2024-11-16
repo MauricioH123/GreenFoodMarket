@@ -51,7 +51,12 @@ class ProductoCrearView extends BaseView
                     break;
 
                 default:
-                    // Otras posibles condiciones que quieras manejar
+                ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><?php echo $mensaje; ?></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            <?php
                     break;
             }
             ?>
