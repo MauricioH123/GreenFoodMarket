@@ -17,4 +17,8 @@ class ProductoService{
     public function crearProducto($id_proveedor, $nombre_producto, $precio_venta){
         return $this -> productoDAO ->crearProductos($id_proveedor, $nombre_producto, $precio_venta);
     }
+
+    public function eliminarPorducto($id_producto){
+        return $this -> productoDAO ->eliminarProducto($id_producto);
+    }
 }

@@ -4,6 +4,7 @@ require_once './vendor/autoload.php';
 use App\Controllers\ProductoController;
 use App\Controllers\HomeController;
 use App\Controllers\PoductoCreaController;
+use App\Controllers\EliminarProductoController;
 
 $action  = isset($_GET['action'])? $_GET['action']: 'Null';
 
@@ -27,4 +28,14 @@ switch($action){
             $controller->mostrarFormulario();
         }
         break;
+    case 'eliminarP':
+        $controllerr = new EliminarProductoController();
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+            $id_producto = $_POST['deleteP'];
+            $controllerr->eliminarPorductoC($id_producto) ;
+        }
+        header("Location: index.php?action=producto");
+        exit;
+        
+
 }

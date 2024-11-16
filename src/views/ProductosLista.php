@@ -23,6 +23,12 @@ class ProductosLista extends BaseView{
                             <td><?php echo $producto->proveedor; ?></td>
                             <td><?php echo $producto->nombre; ?></td>
                             <td><?php echo '$' . number_format($producto->precio, 2); ?></td>
+                            <td>
+                                <form action="index.php?action=eliminarP" method="post">
+                                        <input value="<?php echo $producto->id;?>" type="hidden" name="deleteP">
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

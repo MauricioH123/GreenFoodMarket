@@ -56,16 +56,21 @@ class ProductoDAO{
     }
 
     public function eliminarProducto($id_producto){
-        $query = "CALL eliminar_producto(?);";
-        $stmt = $this -> conn -> prepare($query);
-        $stmt -> bind_param("i", $id_producto);
-        if ($stmt -> execute()) {
-            $stmt -> close();
-            return "Producto eliminado";
-        }else{
-            $stmt -> close();
-            return "Fallo al eliminar el producto";
+        try{
+            $query = "CALL eliminar_producto(?);";
+            $stmt = $this -> conn -> prepare($query);
+            $stmt -> bind_param("i", $id_producto);
+            if ($stmt -> execute()) {
+                $stmt -> close();
+                return "Producto eliminado";
+            }else{
+                $stmt -> close();
+                return "Fallo al eliminar el producto";
+            }
+        }catch(\mysqli_sql_exception $e){
+            return "Error." . $e->getMessage();
         }
+
 
     }
 }
