@@ -56,10 +56,3 @@ This project is a web-based system developed for **Green Food Marker**, a compan
 ## 🎯 Objective  
 Provide a comprehensive, flexible, and efficient tool to help **Green Food Marker** improve operational management, make data-driven decisions, and scale its operations for the future.  
 
----
-
-Contributions and suggestions are welcome! 😊
-
-
-
-
