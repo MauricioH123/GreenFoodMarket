@@ -5,6 +5,7 @@ use App\Controllers\ProductoController;
 use App\Controllers\HomeController;
 use App\Controllers\PoductoCreaController;
 use App\Controllers\EliminarProductoController;
+use App\Controllers\ClienteListarController;
 
 $action  = isset($_GET['action'])? $_GET['action']: 'Null';
 
@@ -29,13 +30,15 @@ switch($action){
         }
         break;
     case 'eliminarP':
-        $controllerr = new EliminarProductoController();
+        $controller = new EliminarProductoController();
         if($_SERVER['REQUEST_METHOD']==='POST'){
             $id_producto = $_POST['deleteP'];
-            $controllerr->eliminarPorductoC($id_producto) ;
+            $controller->eliminarPorductoC($id_producto) ;
         }
         header("Location: index.php?action=producto");
         exit;
-        
-
+    case 'clienteL':
+        $controller = new ClienteListarController();
+        $controller -> mostrarClientes();
+        break;
 }

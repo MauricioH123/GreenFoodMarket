@@ -38,7 +38,7 @@
                                 Cliente
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Ver todos los clientes</a></li>
+                                <li><a class="dropdown-item" href="index.php?action=clienteL">Ver todos los clientes</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
