@@ -18,4 +18,8 @@ class ProductoController{
         $productos = $this -> productoService ->listadoProductos();
         $this -> view -> render($productos);
     }
+
+    public function eliminarPorductoC($id_producto){
+        $eliminarP = $this -> productoService ->eliminarPorducto($id_producto);
+    }
 }
