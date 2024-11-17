@@ -70,8 +70,6 @@ class ProductoDAO{
         }catch(\mysqli_sql_exception $e){
             return "Error." . $e->getMessage();
         }
-
-
     }
 }
 

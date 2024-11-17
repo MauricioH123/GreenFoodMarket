@@ -40,4 +40,12 @@ switch($action){
         $controller = new ClienteListarController();
         $controller -> mostrarClientes();
         break;
+    case 'eliminarC':
+        $controller = new ClienteListarController();
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id_cliente = $_POST['deleteC'];
+            $controller -> eliminarClientes($id_cliente);
+        }
+        header("Location: index.php?action=clienteL");
+        exit;
 }

@@ -32,5 +32,22 @@ class ClienteDAO{
         $stmt->close();
         return $clientes;
     }
+
+    public function eliminarClientes($id_cliente){
+        try{
+            $query = "CALL eliminar_cliente(?);";
+            $stmt = $this -> conn -> prepare($query);
+            $stmt -> bind_param("i", $id_cliente);
+            if ($stmt -> execute()) {
+                $stmt -> close();
+                return "Cliente eliminado";
+            }else{
+                $stmt -> close();
+                return "Fallo al eliminar el Cliente";
+            }
+        }catch(\mysqli_sql_exception $e){
+            return "Error." . $e->getMessage();
+        }
+    }
 }
 

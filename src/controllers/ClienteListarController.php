@@ -17,4 +17,8 @@ class ClienteListarController{
         $clientes = $this -> clienteServicio ->listarClientes();
         $this -> view ->render($clientes);
     }
+
+    public function eliminarClientes($id_cliente){
+        $this -> clienteServicio ->eliminarProducto($id_cliente);
+    }
 }
