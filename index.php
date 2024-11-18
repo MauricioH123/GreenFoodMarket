@@ -6,14 +6,14 @@ use App\Controllers\HomeController;
 use App\Controllers\PoductoCreaController;
 use App\Controllers\ClienteListarController;
 
-$action  = isset($_GET['action'])? $_GET['action']: 'Null';
+$action  = isset($_GET['action'])? $_GET['action']: '';
 
 switch($action){
     case 'producto':
         $controller = new ProductoController();
         $controller -> mostrarProductos();
         break;
-    case 'Null':
+    case '':
         $controller = new HomeController();
         $controller ->index();
         break;
