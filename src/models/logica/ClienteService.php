@@ -17,4 +17,8 @@ class ClienteService{
     public function eliminarProducto($id_cliente){
         return $this ->clienteDAO ->eliminarClientes($id_cliente);
     }
+
+    public function actualizarCliente($id_cliente, $nombre, $numero_celular, $correo, $direccion){
+        return $this -> clienteDAO ->editarClientes($id_cliente, $nombre, $numero_celular, $correo, $direccion);
+    }
 }

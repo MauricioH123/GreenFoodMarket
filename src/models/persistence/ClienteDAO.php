@@ -4,6 +4,8 @@ namespace App\Models\Persistence;
 use App\Database\Database;
 use App\Models\Entidades\Cliente;
 
+require_once "/laragon/www/greend-food/vendor/autoload.php";
+
 class ClienteDAO{
     private $conn;
 
@@ -49,5 +51,25 @@ class ClienteDAO{
             return "Error." . $e->getMessage();
         }
     }
+
+    public function editarClientes($id_cliente, $nombre, $numero_celular, $correo, $direccion){
+        try{
+            $query = 'CALL actualizarClientes(?,?,?,?,?);';
+            $stmt = $this ->conn ->prepare($query);
+            $stmt -> bind_param('issss', $id_cliente, $nombre, $numero_celular, $correo, $direccion);
+            if($stmt -> execute()){
+                $stmt -> close();
+                return "Se actualizo el clientes";
+            }else{
+                $stmt -> close();
+                return "Fallo al actualizar el clientes";
+            }
+        }catch(\mysqli_sql_exception $e){
+            return "Error: ". $e -> getMessage();
+        }
+    }
 }
+
+// $dd = new ClienteDAO();
+// echo $dd ->editarClientes(4, 'Lusmila', '0', 'lusmilaejemplo@gmail.com', 'calle 15 # 58-85');
 

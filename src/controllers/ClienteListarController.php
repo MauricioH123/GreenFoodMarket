@@ -21,4 +21,8 @@ class ClienteListarController{
     public function eliminarClientes($id_cliente){
         $this -> clienteServicio ->eliminarProducto($id_cliente);
     }
+
+    public function actualizarClientes($id_cliente, $nombre, $numero_celular, $correo, $direccion){
+        $this -> clienteServicio ->actualizarCliente($id_cliente, $nombre, $numero_celular, $correo, $direccion);
+    }
 }

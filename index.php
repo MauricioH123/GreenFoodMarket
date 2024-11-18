@@ -48,4 +48,16 @@ switch($action){
         }
         header("Location: index.php?action=clienteL");
         exit;
+    case 'actualizarC':
+        $controller = new ClienteListarController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id_cliente = $_POST['id_cliente'];
+            $nombre = $_POST['nombre'];
+            $numero_celular = $_POST['numero_celular'];
+            $correo = $_POST['correo'];
+            $direccion = $_POST['direccion'];
+            $controller ->actualizarClientes($id_cliente,$nombre,$numero_celular,$correo,$direccion);
+        }
+        header("Location: index.php?action=clienteL");
+        exit;
 }
