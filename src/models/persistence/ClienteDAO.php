@@ -36,6 +36,7 @@ class ClienteDAO{
     }
 
     public function eliminarClientes($id_cliente){
+        $id_cliente = $this -> sanitizeMysql($this ->conn,$id_cliente);
         try{
             $query = "CALL eliminar_cliente(?);";
             $stmt = $this -> conn -> prepare($query);
@@ -53,6 +54,11 @@ class ClienteDAO{
     }
 
     public function editarClientes($id_cliente, $nombre, $numero_celular, $correo, $direccion){
+        $id_cliente = $this -> sanitizeMysql($this ->conn,$id_cliente);
+        $nombre = $this -> sanitizeMysql($this ->conn,$nombre);
+        $numero_celular = $this -> sanitizeMysql($this ->conn,$numero_celular);
+        $correo = $this -> sanitizeMysql($this ->conn,$correo);
+        $direccion = $this -> sanitizeMysql($this ->conn,$direccion);
         try{
             $query = 'CALL actualizarClientes(?,?,?,?,?);';
             $stmt = $this ->conn ->prepare($query);
@@ -70,10 +76,16 @@ class ClienteDAO{
     }
 
     public function crearCliente($nombre, $numero_celular, $correo, $direccion){
-        $query = 'CALL insertar_clientes(?,?,?,?);';
-        $stmt = $this -> conn -> prepare($query);
-        $stmt ->bind_param('ssss', $nombre, $numero_celular, $correo, $direccion);
+        $nombre = $this -> sanitizeMysql($this ->conn,$nombre);
+        $numero_celular = $this -> sanitizeMysql($this ->conn,$numero_celular);
+        $correo = $this -> sanitizeMysql($this ->conn,$correo);
+        $direccion = $this -> sanitizeMysql($this ->conn,$direccion);
+
+        
         try{
+            $query = 'CALL insertar_clientes(?,?,?,?);';
+            $stmt = $this -> conn -> prepare($query);
+            $stmt ->bind_param('ssss', $nombre, $numero_celular, $correo, $direccion);
             if($stmt -> execute()){
                 $stmt -> close();
                 return "Se agrego el nuevo cliente";
