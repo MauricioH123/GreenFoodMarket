@@ -13,10 +13,6 @@ switch($action){
         $controller = new ProductoController();
         $controller -> mostrarProductos();
         break;
-    case '':
-        $controller = new HomeController();
-        $controller ->index();
-        break;
     case 'crearP':
         $controller = new PoductoCreaController();
         if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -60,4 +56,8 @@ switch($action){
         }
         header("Location: index.php?action=clienteL");
         exit;
+    default:
+        $controller = new HomeController();
+        $controller ->index();
+        break;
 }

@@ -3,6 +3,8 @@ namespace App\models\persistence;
 use App\Database\Database;
 use App\Models\Entidades\Producto;
 
+// require_once "/laragon/www/greend-food/vendor/autoload.php";
+
 class ProductoDAO{
     private $conn;
     
@@ -74,4 +76,4 @@ class ProductoDAO{
 }
 
 // $p = new ProductoDAO();
-// echo $p -> crearProductos(50, "sdjf", 500);
+// echo  $p -> eliminarProducto(4);

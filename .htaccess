@@ -1,0 +1,12 @@
+# Activar el motor de reescritura
+RewriteEngine On
+
+# Establecer el directorio base (asegúrate que coincida con tu configuración)
+RewriteBase /greend-food/
+
+# Redirigir todas las solicitudes que no sean archivos o directorios existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirigir todo al index.php manteniendo los parámetros
+RewriteRule ^(.*)$ index.php?action=$1 [QSA,L]
