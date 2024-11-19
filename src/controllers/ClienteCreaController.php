@@ -2,8 +2,8 @@
 namespace App\Controllers;
 
 use App\Models\Logica\ClienteService;
-use App\Views\ProductoCrearView;
 use App\Helpers\Validacion;
+use App\Views\ClienteCrearView;
 
 class ClienteCreaController{
 
@@ -11,8 +11,8 @@ class ClienteCreaController{
     public $view;
 
     public function __construct(){
-        $this -> clienteServicio = new ClienteCreaController();
-        $this -> view = new ProductoCrearView();
+        $this -> clienteServicio = new ClienteService();
+        $this -> view = new ClienteCrearView();
     }
 
     public function mostrarFormulario($mensaje = ""){
@@ -36,7 +36,7 @@ class ClienteCreaController{
             $this -> view ->render("Error: La direccion es invalida");
         }
 
-        $crearC = $this -> clienteServicio ->crearCliente($nombre, $numero_celular, $correo, $direccion);
+        $crearC = $this -> clienteServicio ->agregarNuevoCliente($nombre, $numero_celular, $correo, $direccion);
         $this -> view ->render($crearC);
     }
 }
