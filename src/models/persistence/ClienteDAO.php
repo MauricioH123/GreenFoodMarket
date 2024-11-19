@@ -68,6 +68,23 @@ class ClienteDAO{
             return "Error: ". $e -> getMessage();
         }
     }
+
+    public function crearCliente($nombre, $numero_celular, $correo, $direccion){
+        $query = 'CALL insertar_clientes(?,?,?,?);';
+        $stmt = $this -> conn -> prepare($query);
+        $stmt ->bind_param('ssss', $nombre, $numero_celular, $correo, $direccion);
+        try{
+            if($stmt -> execute()){
+                $stmt -> close();
+                return "Se agrego el nuevo cliente";
+            }else{
+                $stmt -> close();
+                return "Fallo al agregar el cliente";
+            }
+        }catch(\mysqli_sql_exception $e){
+            return "Error: ". $e ->getMessage();
+        }
+    }
 }
 
 // $dd = new ClienteDAO();
