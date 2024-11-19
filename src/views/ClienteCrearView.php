@@ -24,7 +24,7 @@ class ClienteCrearView extends BaseView
                 <?php
                     break;
 
-                case "Error: Error: El numero de celular es invalido":
+                case "Error: El numero de celular es invalido":
                 ?>
 
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -82,14 +82,14 @@ class ClienteCrearView extends BaseView
 
                 <div class="mb-3">
                     <label for="precioVenta" class="form-label">Correo Electronico</label>
-                    <input type="number" step="0.01" id="precioVenta" name="correo" class="form-control" required>
+                    <input type="email" step="0.01" id="precioVenta" name="correo" class="form-control" required>
                     <div id="idHelp" class="form-text">
                         Por favor, ingrese el correo electronico del cliente.
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="precioVenta" class="form-label">Direccion del cliente</label>
-                    <input type="number" step="0.01" id="precioVenta" name="direccion" class="form-control" required>
+                    <input type="text" step="0.01" id="precioVenta" name="direccion" class="form-control" required>
                     <div id="idHelp" class="form-text">
                         Por favor, ingrese la direccion del cliente.
                     </div>

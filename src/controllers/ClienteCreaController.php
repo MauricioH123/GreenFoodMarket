@@ -22,18 +22,22 @@ class ClienteCreaController{
     public function crearCliente($nombre, $numero_celular, $correo, $direccion){
         if(!Validacion::validarNombre($nombre)){
             $this -> view ->render("Error: El nombre del cliente es inválido");
+            return;
         }
 
         if(!Validacion::validarNumero($numero_celular)){
             $this -> view ->render("Error: El numero de celular es invalido");
+            return;
         }
 
         if(!Validacion::validarCorreo($correo)){
             $this -> view ->render("Error: El correo es invalido");
+            return;
         }
 
-        if(!Validacion::validarNumero($direccion)){
+        if(!Validacion::validarNombre($direccion)){
             $this -> view ->render("Error: La direccion es invalida");
+            return;
         }
 
         $crearC = $this -> clienteServicio ->agregarNuevoCliente($nombre, $numero_celular, $correo, $direccion);
