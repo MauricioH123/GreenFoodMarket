@@ -1,10 +1,12 @@
 <?php
 require_once './vendor/autoload.php';
 
+use App\Controllers\ClienteCreaController;
 use App\Controllers\ProductoController;
 use App\Controllers\HomeController;
 use App\Controllers\PoductoCreaController;
 use App\Controllers\ClienteListarController;
+use App\Controllers\ClienteCreaController;
 
 $action  = isset($_GET['action'])? $_GET['action']: '';
 
@@ -56,6 +58,15 @@ switch($action){
         }
         header("Location: index.php?action=clienteL");
         exit;
+    case 'clienteC':
+        $controller = new ClienteCreaController();
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+            $nombre = $_POST['nombre'];
+            $numero_celular = $_POST['numero_celular'];
+            $correo = $_POST['correo'];
+            $direccion = $_POST['direccion'];
+        }
+        break;
     default:
         $controller = new HomeController();
         $controller ->index();

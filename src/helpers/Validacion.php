@@ -15,11 +15,10 @@ namespace App\Helpers;
     }
 
     public static function validarCorreo($correo) {
-        if (filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-            return true; // El correo es válido
-        } else {
-            return false; // El correo no es válido
-        }
+        return filter_var($correo, FILTER_VALIDATE_EMAIL);
+    }
+    public static function validarNumero($provedorId){
+        return is_numeric($provedorId) && $provedorId >0;
     }
     
  }
