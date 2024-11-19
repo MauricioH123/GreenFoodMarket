@@ -29,7 +29,7 @@ class ClienteDAO{
         
         $clientes = array();
         while($row = $resultado -> fetch_assoc()){
-            $clientes[] = new Cliente($row['id_cliente'], $row['nombre'],$row['numero_celular'], $row['correo'], $row['direccion']);
+            $clientes[] = new Cliente(stripslashes($row['id_cliente']), stripslashes($row['nombre']),stripslashes($row['numero_celular']), stripslashes($row['correo']), stripslashes($row['direccion']));
         }
         $stmt->close();
         return $clientes;

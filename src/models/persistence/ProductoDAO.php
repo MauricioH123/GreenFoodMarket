@@ -28,7 +28,7 @@ class ProductoDAO{
         
         $productos = array();
         while($row = $resultado -> fetch_assoc()){
-            $productos[] = new Producto($row['id_producto'], $row['nombre_proveedor'],$row['Nombre_producto'], $row['precio_venta']);
+            $productos[] = new Producto(stripslashes($row['id_producto']), stripslashes($row['nombre_proveedor']),stripslashes($row['Nombre_producto']), stripslashes($row['precio_venta']));
         }
         $stmt->close();
         return $productos;
