@@ -42,7 +42,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Crear clinte</a></li>
+                                <li><a class="dropdown-item" href="index.php?action=clienteC">Crear clinte</a></li>
                             </ul>
                         </li>
                     </ul>
