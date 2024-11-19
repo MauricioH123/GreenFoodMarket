@@ -15,7 +15,7 @@ class ClienteCrearView extends BaseView
 
             <?php
             switch ($mensaje) {
-                case "Error: ID del proveedor invalido":
+                case "Error: El nombre del cliente es inválido":
             ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong><?php echo $mensaje; ?></strong>
@@ -24,7 +24,7 @@ class ClienteCrearView extends BaseView
                 <?php
                     break;
 
-                case "Error: El nombre del producto es inválido":
+                case "Error: Error: El numero de celular es invalido":
                 ?>
 
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -34,7 +34,7 @@ class ClienteCrearView extends BaseView
                 <?php
                     break;
 
-                case "Error: El precio de venta no es válido":
+                case "Error: El correo es invalido":
                 ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong><?php echo $mensaje; ?></strong>
@@ -43,7 +43,7 @@ class ClienteCrearView extends BaseView
                 <?php
                     break;
 
-                case "Producto creado exitosamente":
+                case "Se agrego el nuevo cliente":
                 ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong><?php echo $mensaje; ?></strong>
@@ -52,7 +52,7 @@ class ClienteCrearView extends BaseView
                 <?php
                     break;
 
-                case "Error: el Id del proveedor no existe.":
+                case "Error: La direccion es invalida":
                 ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong><?php echo $mensaje; ?></strong>
@@ -62,28 +62,36 @@ class ClienteCrearView extends BaseView
                     break;
             }
             ?>
-            <form action="index.php?action=crearP" method="post">
+            <form action="index.php?action=clienteC" method="post">
+
                 <div class="mb-3">
-                    <label for="idProveedor" class="form-label">Id del Proveedor</label>
-                    <input type="number" id="idProveedor" name="id_proveedor" class="form-control" required>
+                    <label for="nombreProducto" class="form-label">Nombre del Cliente</label>
+                    <input type="text" id="nombreProducto" name="nombre" class="form-control" required>
                     <div id="idHelp" class="form-text">
-                        Por favor, ingrese el ID del proveedor.
+                        Por favor, ingrese el nombre del cliente.
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="nombreProducto" class="form-label">Nombre del Producto</label>
-                    <input type="text" id="nombreProducto" name="nombre_producto" class="form-control" required>
+                    <label for="precioVenta" class="form-label">Numero de Celular</label>
+                    <input type="number" step="0.01" id="precioVenta" name="numero_celular" class="form-control" required>
                     <div id="idHelp" class="form-text">
-                        Por favor, ingrese el nombre del producto.
+                        Por favor, ingrese el numero de celular del cliente.
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="precioVenta" class="form-label">Precio de Venta</label>
-                    <input type="number" step="0.01" id="precioVenta" name="precio_venta" class="form-control" required>
+                    <label for="precioVenta" class="form-label">Correo Electronico</label>
+                    <input type="number" step="0.01" id="precioVenta" name="correo" class="form-control" required>
                     <div id="idHelp" class="form-text">
-                        Por favor, ingrese el precio de venta del producto.
+                        Por favor, ingrese el correo electronico del cliente.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="precioVenta" class="form-label">Direccion del cliente</label>
+                    <input type="number" step="0.01" id="precioVenta" name="direccion" class="form-control" required>
+                    <div id="idHelp" class="form-text">
+                        Por favor, ingrese la direccion del cliente.
                     </div>
                 </div>
 

@@ -6,7 +6,6 @@ use App\Controllers\ProductoController;
 use App\Controllers\HomeController;
 use App\Controllers\PoductoCreaController;
 use App\Controllers\ClienteListarController;
-use App\Controllers\ClienteCreaController;
 
 $action  = isset($_GET['action'])? $_GET['action']: '';
 
@@ -65,6 +64,9 @@ switch($action){
             $numero_celular = $_POST['numero_celular'];
             $correo = $_POST['correo'];
             $direccion = $_POST['direccion'];
+            $controller ->crearCliente($nombre,$numero_celular,$correo,$direccion);
+        }else{
+            $controller ->mostrarFormulario();
         }
         break;
     default:

@@ -21,7 +21,7 @@ class ClienteCreaController{
 
     public function crearCliente($nombre, $numero_celular, $correo, $direccion){
         if(!Validacion::validarNombre($nombre)){
-            $this -> view ->render("Error: El nombre del producto es inválido");
+            $this -> view ->render("Error: El nombre del cliente es inválido");
         }
 
         if(!Validacion::validarNumero($numero_celular)){
