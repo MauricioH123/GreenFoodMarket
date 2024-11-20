@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Logica\ProductoService;
 use App\Views\ProductoCrearView;
-use App\Helpers\Validacion;
+use Respect\Validation\Validator as v;
 
 
 class PoductoCreaController{
@@ -21,17 +21,17 @@ class PoductoCreaController{
 
     public function crearProducto($id_proveedor, $nombre_producto, $precio_venta){
         
-        if(!Validacion::validarProveedor($id_proveedor)){
+        if(!v::positive()->validate($id_proveedor)){
             $this -> view -> render("Error: ID del proveedor invalido");
             return;
         }
 
-        if(!Validacion::validarNombre($nombre_producto)){
+        if(!v::stringType()->notEmpty()->validate($nombre_producto)){
             $this -> view -> render("Error: El nombre del producto es inválido");
             return;
         }
 
-        if(!Validacion::validarPrecio($precio_venta)){
+        if(!v::positive()->validate($precio_venta)){
             $this -> view -> render("Error: El precio de venta no es válido");
             return;
         }
