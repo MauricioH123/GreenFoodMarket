@@ -54,11 +54,11 @@ class ClienteDAO{
     }
 
     public function editarClientes($id_cliente, $nombre, $numero_celular, $correo, $direccion){
-        $id_cliente = $this -> sanitizeMysql($this ->conn,$id_cliente);
-        $nombre = $this -> sanitizeMysql($this ->conn,$nombre);
-        $numero_celular = $this -> sanitizeMysql($this ->conn,$numero_celular);
-        $correo = $this -> sanitizeMysql($this ->conn,$correo);
-        $direccion = $this -> sanitizeMysql($this ->conn,$direccion);
+        $id_cliente = ucwords($this -> sanitizeMysql($this ->conn,$id_cliente));
+        $nombre = ucwords($this -> sanitizeMysql($this ->conn,$nombre));
+        $numero_celular = ucwords($this -> sanitizeMysql($this ->conn,$numero_celular));
+        $correo = strtolower($this -> sanitizeMysql($this ->conn,$correo));
+        $direccion = ucwords($this -> sanitizeMysql($this ->conn,$direccion));
         try{
             $query = 'CALL actualizarClientes(?,?,?,?,?);';
             $stmt = $this ->conn ->prepare($query);
@@ -76,10 +76,10 @@ class ClienteDAO{
     }
 
     public function crearCliente($nombre, $numero_celular, $correo, $direccion){
-        $nombre = $this -> sanitizeMysql($this ->conn,$nombre);
-        $numero_celular = $this -> sanitizeMysql($this ->conn,$numero_celular);
-        $correo = $this -> sanitizeMysql($this ->conn,$correo);
-        $direccion = $this -> sanitizeMysql($this ->conn,$direccion);
+        $nombre = ucwords($this -> sanitizeMysql($this ->conn,$nombre));
+        $numero_celular = ucwords($this -> sanitizeMysql($this ->conn,$numero_celular));
+        $correo = strtolower($this -> sanitizeMysql($this ->conn,$correo));
+        $direccion = ucwords($this -> sanitizeMysql($this ->conn,$direccion));
 
         
         try{
