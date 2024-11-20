@@ -30,5 +30,5 @@ class ProveedorDAO{
     }
 }
 
-$p = new ProveedorDAO();
-print_r( $p ->obtenerProveedor());
+// $p = new ProveedorDAO();
+// print_r( $p ->obtenerProveedor());
