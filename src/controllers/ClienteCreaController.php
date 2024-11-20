@@ -35,7 +35,7 @@ class ClienteCreaController{
             return;
         }
 
-        if(!v::positive()->validate($direccion)){
+        if(!v::stringType()->notEmpty()->validate($direccion)){
             $this -> view ->render("Error: La direccion es invalida");
             return;
         }
