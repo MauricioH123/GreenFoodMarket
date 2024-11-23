@@ -41,6 +41,6 @@ class PoductoCreaController{
         }
 
         $creaP = $this-> productoService ->crearProducto($id_proveedor, $nombre_producto, $precio_venta);
-        $this -> mostrarFormulario();
+        $this -> mostrarFormulario($creaP);
     }
 }
