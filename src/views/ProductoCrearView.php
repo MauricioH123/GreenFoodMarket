@@ -4,7 +4,7 @@ namespace App\Views;
 
 class ProductoCrearView extends BaseView
 {
-    public function render($mensaje)
+    public function render($mensaje, $proveedores)
     {
         ob_start();
 ?>
@@ -47,7 +47,7 @@ class ProductoCrearView extends BaseView
                         <strong><?php echo $mensaje; ?></strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-            <?php
+                <?php
                     break;
 
                 case "Error: el Id del proveedor no existe.":
@@ -63,7 +63,13 @@ class ProductoCrearView extends BaseView
             <form action="index.php?action=crearP" method="post">
                 <div class="mb-3">
                     <label for="idProveedor" class="form-label">Id del Proveedor</label>
-                    <input type="number" id="idProveedor" name="id_proveedor" class="form-control" required>
+                    <select class="form-select" name="id_proveedor" aria-label="Default select example">
+                        <option selected disabled>Selecciona el Proveedor</option>
+                        <?php foreach ($proveedores as $proveedor): ?>
+                        <option value="<?php echo $proveedor ->id_proveedor;?>"><?php echo $proveedor ->nombre_proveedor;?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <!-- <input type="number" id="idProveedor" name="id_proveedor" class="form-control" required> -->
                     <div id="idHelp" class="form-text">
                         Por favor, ingrese el ID del proveedor.
                     </div>
