@@ -10,10 +10,8 @@ class ProveedorListaView extends BaseView{
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID Producto</th>
+                        <th>Id del proveedor</th>
                         <th>Nombre del proveedor</th>
-                        <th>Nombre del producto</th>
-                        <th>Precio</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,25 +20,25 @@ class ProveedorListaView extends BaseView{
                             <td><?php echo $proveedor->id_proveedor; ?></td>
                             <td><?php echo $proveedor->nombre_proveedor; ?></td>
                             <td>
-                                <form action="index.php?action=eliminarP" method="post">
-                                        <input value="<?php echo $proveedor->id_proveedor;;?>" type="hidden" name="deleteP">
+                                <form action="index.php?action=eliminarProve" method="post">
+                                        <input value="<?php echo $proveedor->id_proveedor;?>" type="hidden" name="deleteP">
                                         <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
                                         
                                         <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<?php echo $proveedor->id_proveedor;; ?>">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<?php echo $proveedor->id_proveedor;?>">
                                 Eliminar
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="modal-<?php echo $proveedor->id_proveedor; ?>" tabindex="-1" aria-labelledby="exampleModalLabel-<?php echo $proveedor->id_proveedor;; ?>" aria-hidden="true">
+                            <div class="modal fade" id="modal-<?php echo $proveedor->id_proveedor; ?>" tabindex="-1" aria-labelledby="exampleModalLabel-<?php echo $proveedor->id_proveedor; ?>" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel-<?php echo $proveedor->id_proveedor;; ?>">Eliminar producto</h1>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel-<?php echo $proveedor->id_proveedor;?>">Eliminar proveedor</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>¿Estás seguro de eliminar este producto?</p>
+                                            <p>¿Estás seguro de eliminar este proveedor?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>

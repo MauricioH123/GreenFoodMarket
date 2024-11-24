@@ -14,6 +14,13 @@ class ProveedorDAO{
         $this -> conn = $baseDeDato ->abrir();
     }
 
+    function sanitizeMysql($connection, $string){
+        $string =$connection->real_escape_string($string);
+        $string = strip_tags($string);
+        $string = htmlentities($string);
+        return $string;
+    }
+
     public function obtenerProveedor(){
         $query = "SELECT * FROM proveedores;";
         $stmt = $this -> conn ->prepare($query);
@@ -27,6 +34,44 @@ class ProveedorDAO{
         $stmt ->close();
         
         return $proveedores;
+    }
+
+    public function eliminarProveedor($id_proveedor){
+        try{
+            $query = "CALL eliminar_proveedor(?)";
+            $stmt = $this ->conn->prepare($query);
+            $stmt ->bind_param("i", $id_proveedor);
+            if($stmt -> execute()){
+                $stmt->close();
+                return "Proveedor eliminado exitosamente";
+            }else{
+                $stmt->close();
+                return "Fallo al eliminacion del proveedor";
+            }
+        }catch(\mysqli_sql_exception $e){
+            return "Error: " . $e->getMessage();
+        }
+
+    }
+
+    public function editarProveedor($id_proveedor, $nombre_proveedor){
+        $id_proveedor = ucwords($this -> sanitizeMysql($this ->conn,$id_proveedor));
+        $nombre_proveedor = ucwords($this -> sanitizeMysql($this ->conn,$nombre_proveedor));
+
+        try{
+            $query = "CALL actualizarProveedor(?,?)";
+            $stmt = $this -> conn ->prepare($query);
+            $stmt ->bind_param("is".$id_proveedor, $nombre_proveedor);
+            if($stmt -> execute()){
+                $stmt -> close();
+                return "Se actualizo el proveedor";
+            }else{
+                $stmt -> close();
+                return "Fallo al actualizar el proveedor";
+            }
+        }catch(\mysqli_sql_exception $e){
+            return "Error: " . $e->getMessage();
+        }
     }
 }
 
