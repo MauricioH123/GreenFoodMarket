@@ -22,5 +22,9 @@ class ProveedorService{
     public function actualizarProveedor($id_proveedor, $nombre_proveedor){
         return $this -> proveerdorDAO ->editarProveedor($id_proveedor, $nombre_proveedor);
     }
-    
+
+    public function crearProveedor($nombre_proveedor){
+        $this -> proveerdorDAO ->crearProveedor($nombre_proveedor);
+    }
+
 }

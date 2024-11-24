@@ -75,7 +75,18 @@ class ProveedorDAO{
     }
 
     public function crearProveedor($nombre_proveedor){
-        
+        $nombre_proveedor =ucwords($this -> sanitizeMysql($this ->conn,$nombre_proveedor));
+        try{
+            $query = "CALL insertar_proveedor(?);";
+            $stmt = $this -> conn -> prepare($query);
+            $stmt -> bind_param("s", $nombre_proveedor);
+            if($stmt ->execute()){
+                $stmt -> close();
+                return "Se creao el proveedor con exito";
+            }
+        }catch(\mysqli_sql_exception $e){
+            return "Error: " . $e->getMessage();
+        }
     }
 }
 
