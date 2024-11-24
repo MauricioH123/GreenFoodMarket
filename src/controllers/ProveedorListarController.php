@@ -15,7 +15,7 @@ class ProveedorListarController{
     }
 
     public function mostrarProveedor(){
-        $clientes = $this ->productoService ->listaProveedore();
-        $this -> view ->render($clientes);
+        $proveedores = $this ->productoService ->listaProveedore();
+        $this -> view ->render($proveedores);
     }
 }
