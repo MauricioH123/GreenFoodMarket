@@ -6,6 +6,7 @@ use App\Controllers\ProductoController;
 use App\Controllers\HomeController;
 use App\Controllers\PoductoCreaController;
 use App\Controllers\ClienteListarController;
+use App\Controllers\ProveedorListarController;
 
 $action  = isset($_GET['action'])? $_GET['action']: '';
 
@@ -68,6 +69,10 @@ switch($action){
         }else{
             $controller ->mostrarFormulario();
         }
+        break;
+    case 'proveedorL':
+        $controller = new ProveedorListarController(); 
+        $controller -> mostrarProveedor();
         break;
     default:
         $controller = new HomeController();

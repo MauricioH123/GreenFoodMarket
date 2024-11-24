@@ -31,6 +31,10 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="index.php?action=crearP">Crear un producto</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="">Inventario</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -43,6 +47,18 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="index.php?action=clienteC">Crear clinte</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Proveedor
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="index.php?action=proveedorL">Ver todos los proveedore</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="">Crear Proveedor</a></li>
                             </ul>
                         </li>
                     </ul>
