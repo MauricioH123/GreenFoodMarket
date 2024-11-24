@@ -38,7 +38,7 @@ class ProveedorDAO{
 
     public function eliminarProveedor($id_proveedor){
         try{
-            $query = "CALL eliminar_proveedor(?)";
+            $query = "CALL eliminar_proveedor(?);";
             $stmt = $this ->conn->prepare($query);
             $stmt ->bind_param("i", $id_proveedor);
             if($stmt -> execute()){
@@ -61,7 +61,7 @@ class ProveedorDAO{
         try{
             $query = "CALL actualizarProveedor(?,?)";
             $stmt = $this -> conn ->prepare($query);
-            $stmt ->bind_param("is".$id_proveedor, $nombre_proveedor);
+            $stmt ->bind_param('is',$id_proveedor, $nombre_proveedor);
             if($stmt -> execute()){
                 $stmt -> close();
                 return "Se actualizo el proveedor";
@@ -72,6 +72,10 @@ class ProveedorDAO{
         }catch(\mysqli_sql_exception $e){
             return "Error: " . $e->getMessage();
         }
+    }
+
+    public function crearProveedor($nombre_proveedor){
+        
     }
 }
 

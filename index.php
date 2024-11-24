@@ -8,74 +8,91 @@ use App\Controllers\PoductoCreaController;
 use App\Controllers\ClienteListarController;
 use App\Controllers\ProveedorListarController;
 
-$action  = isset($_GET['action'])? $_GET['action']: '';
+$action  = isset($_GET['action']) ? $_GET['action'] : '';
 
-switch($action){
+switch ($action) {
     case 'producto':
         $controller = new ProductoController();
-        $controller -> mostrarProductos();
+        $controller->mostrarProductos();
         break;
     case 'crearP':
         $controller = new PoductoCreaController();
-        if($_SERVER['REQUEST_METHOD']==='POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_proveedor = $_POST['id_proveedor'];
             $nombre_producto = $_POST['nombre_producto'];
             $precio_venta = $_POST['precio_venta'];
             $controller->crearProducto($id_proveedor, $nombre_producto, $precio_venta);
-        }else{
+        } else {
             $controller->mostrarFormulario();
         }
         break;
     case 'eliminarP':
         $controller = new ProductoController();
-        if($_SERVER['REQUEST_METHOD']==='POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_producto = $_POST['deleteP'];
-            $controller->eliminarPorductoC($id_producto) ;
+            $controller->eliminarPorductoC($id_producto);
         }
         header("Location: index.php?action=producto");
         exit;
     case 'clienteL':
         $controller = new ClienteListarController();
-        $controller -> mostrarClientes();
+        $controller->mostrarClientes();
         break;
     case 'eliminarC':
         $controller = new ClienteListarController();
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_cliente = $_POST['deleteC'];
-            $controller -> eliminarClientes($id_cliente);
+            $controller->eliminarClientes($id_cliente);
         }
         header("Location: index.php?action=clienteL");
         exit;
     case 'actualizarC':
         $controller = new ClienteListarController();
-        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_cliente = $_POST['id_cliente'];
             $nombre = $_POST['nombre'];
             $numero_celular = $_POST['numero_celular'];
             $correo = $_POST['correo'];
             $direccion = $_POST['direccion'];
-            $controller ->actualizarClientes($id_cliente,$nombre,$numero_celular,$correo,$direccion);
+            $controller->actualizarClientes($id_cliente, $nombre, $numero_celular, $correo, $direccion);
         }
         header("Location: index.php?action=clienteL");
         exit;
     case 'clienteC':
         $controller = new ClienteCreaController();
-        if($_SERVER['REQUEST_METHOD']==='POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre = $_POST['nombre'];
             $numero_celular = $_POST['numero_celular'];
             $correo = $_POST['correo'];
             $direccion = $_POST['direccion'];
-            $controller ->crearCliente($nombre,$numero_celular,$correo,$direccion);
-        }else{
-            $controller ->mostrarFormulario();
+            $controller->crearCliente($nombre, $numero_celular, $correo, $direccion);
+        } else {
+            $controller->mostrarFormulario();
         }
         break;
     case 'proveedorL':
-        $controller = new ProveedorListarController(); 
-        $controller -> mostrarProveedor();
+        $controller = new ProveedorListarController();
+        $controller->mostrarProveedor();
         break;
+    case 'actualizarProve':
+        $controller = new ProveedorListarController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_peoveedor = $_POST['id_proveedor'];
+            $nombre = $_POST['nombre_proveedor'];
+            $controller->editarProveedor($id_peoveedor, $nombre);
+        }
+        header("Location: index.php?action=proveedorL");
+        exit;
+    case 'eliminarProve':
+        $controller = new ProveedorListarController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_proveedor = $_POST['id_proveedor'];
+            $controller->eliminarProveedor($id_proveedor);
+        }
+        header("Location: index.php?action=proveedorL");
+        exit;
     default:
         $controller = new HomeController();
-        $controller ->index();
+        $controller->index();
         break;
 }
