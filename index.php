@@ -7,6 +7,7 @@ use App\Controllers\HomeController;
 use App\Controllers\PoductoCreaController;
 use App\Controllers\ClienteListarController;
 use App\Controllers\ProveedorListarController;
+use App\Controllers\ProveedorController;
 
 $action  = isset($_GET['action']) ? $_GET['action'] : '';
 
@@ -91,6 +92,15 @@ switch ($action) {
         }
         header("Location: index.php?action=proveedorL");
         exit;
+    case 'proveedorC':
+        $controller = new ProveedorController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre_proveedor = $_POST['nombre_proveedor'];
+            $controller->crearProveedor ($nombre_proveedor);
+        }else{
+            $controller ->mostrarFormulario();
+        }
+        break;
     default:
         $controller = new HomeController();
         $controller->index();

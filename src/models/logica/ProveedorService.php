@@ -24,7 +24,7 @@ class ProveedorService{
     }
 
     public function crearProveedor($nombre_proveedor){
-        $this -> proveerdorDAO ->crearProveedor($nombre_proveedor);
+        return $this -> proveerdorDAO ->crearProveedor($nombre_proveedor);
     }
 
 }

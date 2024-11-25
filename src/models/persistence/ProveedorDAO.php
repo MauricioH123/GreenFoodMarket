@@ -4,7 +4,7 @@ namespace App\Models\Persistence;
 use App\Models\Entidades\Proveedor;
 use App\Database\Database;
 
-require_once "/laragon/www/greend-food/vendor/autoload.php";
+// require_once "/laragon/www/greend-food/vendor/autoload.php";
 
 class ProveedorDAO{
     private $conn;
@@ -74,15 +74,15 @@ class ProveedorDAO{
         }
     }
 
-    public function crearProveedor($nombre_proveedor){
-        $nombre_proveedor =ucwords($this -> sanitizeMysql($this ->conn,$nombre_proveedor));
+    public function crearProveedor($nombre_proveedorr){
+        $nombre_proveedor =ucwords($this -> sanitizeMysql($this ->conn,$nombre_proveedorr));
         try{
             $query = "CALL insertar_proveedor(?);";
             $stmt = $this -> conn -> prepare($query);
             $stmt -> bind_param("s", $nombre_proveedor);
             if($stmt ->execute()){
                 $stmt -> close();
-                return "Se creao el proveedor con exito";
+                return "Se creo el proveedor con exito";
             }
         }catch(\mysqli_sql_exception $e){
             return "Error: " . $e->getMessage();
@@ -91,4 +91,5 @@ class ProveedorDAO{
 }
 
 // $p = new ProveedorDAO();
-// print_r( $p ->obtenerProveedor());
+// echo 
+// $p ->crearProveedor("Mauriciodf sdjkfs dskjf");

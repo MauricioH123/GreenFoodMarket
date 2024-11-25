@@ -58,7 +58,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="">Crear Proveedor</a></li>
+                                <li><a class="dropdown-item" href="index.php?action=proveedorC">Crear Proveedor</a></li>
                             </ul>
                         </li>
                     </ul>

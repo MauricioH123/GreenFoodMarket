@@ -6,24 +6,24 @@ use App\Views\ProveedorListaView;
 use Respect\Validation\Validator as v;
 
 class ProveedorListarController{
-    private $productoService;
+    private $proveedoreService;
     private $view;
 
     public function __construct(){
-        $this ->productoService = new ProveedorService();
+        $this ->proveedoreService = new ProveedorService();
         $this ->view = new ProveedorListaView();
     }
 
     public function mostrarProveedor(){
-        $proveedores = $this ->productoService ->listaProveedore();
+        $proveedores = $this ->proveedoreService ->listaProveedore();
         $this -> view ->render($proveedores);
     }
 
     public function eliminarProveedor($id_proveedor){
-        $this -> productoService ->borrarProveedor($id_proveedor);
+        $this -> proveedoreService ->borrarProveedor($id_proveedor);
     }
 
     public function editarProveedor($id_proveedor, $nombre_proveedor){
-        $this -> productoService ->actualizarProveedor($id_proveedor, $nombre_proveedor);    
+        $this -> proveedoreService ->actualizarProveedor($id_proveedor, $nombre_proveedor);    
     }
 }
