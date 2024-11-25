@@ -8,6 +8,7 @@ use App\Controllers\PoductoCreaController;
 use App\Controllers\ClienteListarController;
 use App\Controllers\ProveedorListarController;
 use App\Controllers\ProveedorController;
+use App\Controllers\InventarioListarController;
 
 $action  = isset($_GET['action']) ? $_GET['action'] : '';
 
@@ -100,6 +101,10 @@ switch ($action) {
         }else{
             $controller ->mostrarFormulario();
         }
+        break;
+    case 'inventarioL':
+        $controller = new InventarioListarController();
+        $controller->mostrarInventario();
         break;
     default:
         $controller = new HomeController();

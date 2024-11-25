@@ -34,7 +34,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="">Inventario</a></li>
+                                <li><a class="dropdown-item" href="index.php?action=inventarioL">Inventario</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

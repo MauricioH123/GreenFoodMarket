@@ -4,7 +4,7 @@ namespace App\Models\Persistence;
 use App\Database\Database;
 use App\Models\Entidades\Cliente;
 
-require_once "/laragon/www/greend-food/vendor/autoload.php";
+// require_once "/laragon/www/greend-food/vendor/autoload.php";
 
 class ClienteDAO{
     private $conn;
