@@ -106,6 +106,16 @@ switch ($action) {
         $controller = new InventarioListarController();
         $controller->mostrarInventario();
         break;
+    case 'actualizarInven':
+        $controller = new InventarioListarController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_producto = $_POST['id_producto'];
+            $cantidad = $_POST['cantidad_producto'];
+            $controller->actualizarInventario($id_producto, $cantidad);
+        }
+        header("Location: index.php?action=inventarioL");
+        exit;
+        
     default:
         $controller = new HomeController();
         $controller->index();

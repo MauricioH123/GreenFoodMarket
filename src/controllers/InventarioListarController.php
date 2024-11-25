@@ -19,4 +19,8 @@ class InventarioListarController{
         $this -> view ->render($inventario);
     }
 
+    public function actualizarInventario($id_producto, $cantidad){
+        $this ->inventarioService ->actualizarInventario($id_producto, $cantidad);
+    }
+
 }

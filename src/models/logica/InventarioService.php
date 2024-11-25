@@ -14,7 +14,7 @@ class InventarioService{
         return $this -> inventarioDAO ->obtenerInventario();
     }
 
-    public function actualizarInventario(){
-        
+    public function actualizarInventario($id_producto, $cantidad){
+        return $this ->inventarioDAO ->editarInventario($id_producto, $cantidad);
     }
 }

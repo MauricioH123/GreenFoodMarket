@@ -17,6 +17,13 @@ class InventarioDAO
         $this->conn = $basededatos->abrir();
     }
 
+    function sanitizeMysql($connection, $string){
+        $string =$connection->real_escape_string($string);
+        $string = strip_tags($string);
+        $string = htmlentities($string);
+        return $string;
+    }
+
     public function obtenerInventario()
     {
         try {
@@ -36,7 +43,23 @@ class InventarioDAO
         }
     }
 
-    public function editarInventario() {}
+    public function editarInventario($id_producto, $cantidad) {
+        $id_producto = $this -> sanitizeMysql($this ->conn,$id_producto);
+        $cantidad = $this -> sanitizeMysql($this ->conn,$cantidad);
+        try{
+            $query = "UPDATE inventario SET cantidad =? WHERE id_producto= ?;";
+            $stmt = $this->conn ->prepare($query);
+            $stmt ->bind_param('ii',$cantidad,$id_producto);
+            if($stmt -> execute()){
+                $stmt -> close();
+                return "Se actualizo el inventario";
+            }else{
+                $stmt -> close();
+            }
+        }catch(\mysqli_sql_exception $e){
+            return "Error." . $e->getMessage();
+        }
+    }
 }
 
 // $d = new InventarioDAO();

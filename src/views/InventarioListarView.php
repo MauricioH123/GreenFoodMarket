@@ -37,7 +37,7 @@ class InventarioListarView extends BaseView{
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <input name="id_proveedor" value="<?php echo $productos->id_inventario;?>" type="hidden">
+                                                <input name="id_producto" value="<?php echo $productos->id_inventario;?>" type="hidden">
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="mb-3">
