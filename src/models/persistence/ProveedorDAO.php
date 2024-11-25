@@ -55,8 +55,8 @@ class ProveedorDAO{
     }
 
     public function editarProveedor($id_proveedor, $nombre_proveedor){
-        $id_proveedor = ucwords($this -> sanitizeMysql($this ->conn,$id_proveedor));
-        $nombre_proveedor = ucwords($this -> sanitizeMysql($this ->conn,$nombre_proveedor));
+        $id_proveedor = ucwords(strtolower($this -> sanitizeMysql($this ->conn,$id_proveedor)));
+        $nombre_proveedor = ucwords(strtolower($this -> sanitizeMysql($this ->conn,$nombre_proveedor)));
 
         try{
             $query = "CALL actualizarProveedor(?,?)";
@@ -75,7 +75,7 @@ class ProveedorDAO{
     }
 
     public function crearProveedor($nombre_proveedorr){
-        $nombre_proveedor =ucwords($this -> sanitizeMysql($this ->conn,$nombre_proveedorr));
+        $nombre_proveedor =ucwords(strtolower($this -> sanitizeMysql($this ->conn,$nombre_proveedorr)));
         try{
             $query = "CALL insertar_proveedor(?);";
             $stmt = $this -> conn -> prepare($query);
