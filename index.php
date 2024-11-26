@@ -2,6 +2,7 @@
 require_once './vendor/autoload.php';
 
 use App\Controllers\ClienteCreaController;
+use App\Controllers\EntradaCrearController;
 use App\Controllers\ProductoController;
 use App\Controllers\HomeController;
 use App\Controllers\PoductoCreaController;
@@ -115,7 +116,18 @@ switch ($action) {
         }
         header("Location: index.php?action=inventarioL");
         exit;
-        
+    case 'entradaC':
+        $controller = new EntradaCrearController();
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id_producto = $_POST['id_producto'];
+            $cantidad_entrada = $_POST['cantidad_entrada'];
+            $precio_entrada = $_POST['precio_entrada'];
+            $fecha_entrada = $_POST['fecha_entrada'];
+            $controller -> validarFormulario( $id_producto,$cantidad_entrada,  $precio_entrada,  $fecha_entrada);
+        }else{
+            $controller ->mostrarFormulario();
+        }
+        break;
     default:
         $controller = new HomeController();
         $controller->index();
