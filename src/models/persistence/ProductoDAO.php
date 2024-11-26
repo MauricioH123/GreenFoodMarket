@@ -38,11 +38,11 @@ class ProductoDAO{
         try{
             $id_proveedor = ucwords(strtolower($this -> sanitizeMysql($this ->conn,$id_proveedor)));
             $nombre_producto = ucwords(strtolower($this -> sanitizeMysql($this ->conn,$nombre_producto)));
-            $precio_venta = ucwords(strtolower($this -> sanitizeMysql($this ->conn,$precio_venta)));
+            $precio_venta = floatval($this -> sanitizeMysql($this ->conn,$precio_venta));
     
             $query = "CALL insertar_producto(?,?,?);";
             $stmt = $this -> conn -> prepare($query);
-            $stmt -> bind_param("isi", $id_proveedor, $nombre_producto, $precio_venta);
+            $stmt -> bind_param("isd", $id_proveedor, $nombre_producto, $precio_venta);
     
             if($stmt -> execute()){
                 $stmt->close();

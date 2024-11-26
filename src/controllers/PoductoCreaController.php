@@ -24,8 +24,8 @@ class PoductoCreaController{
     }
 
     public function crearProducto($id_proveedor, $nombre_producto, $precio_venta){
-        
-        if(!v::positive()->validate($id_proveedor)){
+
+        if(!v::positive()->validate($id_proveedor) or isset($id_proveedor)){
             $this -> mostrarFormulario("Error: ID del proveedor invalido");
             return;
         }

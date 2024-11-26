@@ -63,8 +63,8 @@ class ProductoCrearView extends BaseView
             <form action="index.php?action=crearP" method="post">
                 <div class="mb-3">
                     <label for="idProveedor" class="form-label">Id del Proveedor</label>
-                    <select class="form-select" name="id_proveedor" aria-label="Default select example">
-                        <option selected disabled>Selecciona el Proveedor</option>
+                    <select class="form-select" name="id_proveedor" aria-label="Default select example" required>
+                        <option selected hidden value="0">---Selecciona el Proveedor---</option>
                         <?php foreach ($proveedores as $proveedor): ?>
                         <option value="<?php echo $proveedor ->id_proveedor;?>"><?php echo $proveedor ->nombre_proveedor;?></option>
                         <?php endforeach; ?>
