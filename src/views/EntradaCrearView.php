@@ -2,7 +2,7 @@
 namespace App\Views;
 
 class EntradaCrearView extends BaseView{
-    public function render($mensaje)
+    public function render($mensaje, $productos)
     {
         ob_start();
 ?>
@@ -12,7 +12,7 @@ class EntradaCrearView extends BaseView{
 
             <?php
             switch ($mensaje) {
-                case "Error: El nombre del cliente es inválido":
+                case "Error: El id del producto es invalido":
             ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong><?php echo $mensaje; ?></strong>
@@ -21,7 +21,7 @@ class EntradaCrearView extends BaseView{
                 <?php
                     break;
 
-                case "Error: El numero de celular es invalido":
+                case "Error: La cantidad unitaria del producto es invalido":
                 ?>
 
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -31,7 +31,7 @@ class EntradaCrearView extends BaseView{
                 <?php
                     break;
 
-                case "Error: El correo es invalido":
+                case "Error: El precio del producto es invalido":
                 ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong><?php echo $mensaje; ?></strong>
@@ -40,18 +40,18 @@ class EntradaCrearView extends BaseView{
                 <?php
                     break;
 
-                case "Se agrego el nuevo cliente":
+                case "Error: La fecha de ingreso del producto es invalido":
+                ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><?php echo $mensaje; ?></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                    break;
+
+                case "Entrada creada exitosamente":
                 ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong><?php echo $mensaje; ?></strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php
-                    break;
-
-                case "Error: La direccion es invalida":
-                ?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong><?php echo $mensaje; ?></strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -61,38 +61,45 @@ class EntradaCrearView extends BaseView{
             ?>
             <form action="index.php?action=entradaC" method="post">
 
-                <div class="mb-3">
-                    <label for="nombreProducto" class="form-label">Nombre del Cliente</label>
-                    <input type="text" id="nombreProducto" name="nombre" class="form-control" required>
+            <div class="mb-3">
+                    <label for="idProducto" class="form-label">Nombre del Producto</label>
+                    <select class="form-select" name="id_producto" aria-label="Default select example" required>
+                        <option selected hidden value="0">---Selecciona el Producto---</option>
+                        <?php foreach ($productos as $producto): ?>
+                        <option value="<?php echo $producto->id;?>"><?php echo $producto->nombre;?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <!-- <input type="number" id="idProveedor" name="id_proveedor" class="form-control" required> -->
                     <div id="idHelp" class="form-text">
-                        Por favor, ingrese el nombre del cliente.
+                        Por favor, ingrese el nombre del producto.
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="precioVenta" class="form-label">Numero de Celular</label>
-                    <input type="number" step="0.01" id="precioVenta" name="numero_celular" class="form-control" required>
+                    <label for="precioVenta" class="form-label">Cantidad</label>
+                    <input type="number" step="0.01" id="precioVenta" name="cantidad_entrada" class="form-control" required>
                     <div id="idHelp" class="form-text">
-                        Por favor, ingrese el numero de celular del cliente.
+                        Por favor, ingrese la cantidad en unidades del producto.
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="precioVenta" class="form-label">Correo Electronico</label>
-                    <input type="email" step="0.01" id="precioVenta" name="correo" class="form-control" required>
+                    <label for="precioVenta" class="form-label">Precio de entrada</label>
+                    <input type="number" step="0.01" id="precioVenta" name="precio_entrada" class="form-control" required>
                     <div id="idHelp" class="form-text">
-                        Por favor, ingrese el correo electronico del cliente.
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="precioVenta" class="form-label">Direccion del cliente</label>
-                    <input type="text" step="0.01" id="precioVenta" name="direccion" class="form-control" required>
-                    <div id="idHelp" class="form-text">
-                        Por favor, ingrese la direccion del cliente.
+                        Por favor, ingrese el precio de entrada del producto.
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                <div class="mb-3">
+                    <label for="precioVenta" class="form-label">Fecha de entrada</label>
+                    <input type="date" step="0.01" id="precioVenta" name="fecha_entrada" class="form-control" required>
+                    <div id="idHelp" class="form-text">
+                        Por favor, ingrese la fecha en la que ingreso el producto.
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar Entrada</button>
             </form>
         </div>
 <?php

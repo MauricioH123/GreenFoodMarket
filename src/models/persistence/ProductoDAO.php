@@ -36,7 +36,7 @@ class ProductoDAO{
 
     public function crearProductos($id_proveedor, $nombre_producto, $precio_venta){
         try{
-            $id_proveedor = ucwords(strtolower($this -> sanitizeMysql($this ->conn,$id_proveedor)));
+            $id_proveedor = $this -> sanitizeMysql($this ->conn,$id_proveedor);
             $nombre_producto = ucwords(strtolower($this -> sanitizeMysql($this ->conn,$nombre_producto)));
             $precio_venta = floatval($this -> sanitizeMysql($this ->conn,$precio_venta));
     
