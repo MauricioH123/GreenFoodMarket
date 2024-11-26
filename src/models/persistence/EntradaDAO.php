@@ -22,19 +22,24 @@ class EntradaDAO{
     }
 
     public function crearEntrada($id_producto, $cantidad_entrada, $precio_entrada, $fecha_entrada){
-        $id_producto = ucwords(strtolower($this -> sanitizeMysql($this -> conn,$id_producto)));
-        $cantidad_entrada = ucwords(strtolower($this -> sanitizeMysql($this -> conn,$cantidad_entrada)));
-        $precio_entrada = ucwords(strtolower($this -> sanitizeMysql($this -> conn,$precio_entrada)));
+        $id_producto = $this -> sanitizeMysql($this -> conn,$id_producto);
+        $cantidad_entrada = $this -> sanitizeMysql($this -> conn,$cantidad_entrada);
+        $precio_entrada = floatval($this -> sanitizeMysql($this -> conn,$precio_entrada));
         $fecha_entrada = $this -> sanitizeMysql($this -> conn,$fecha_entrada);
 
         try{
             $query = "CALL insertar_entradas(?,?,?,?);";
             $stmt = $this -> conn ->prepare($query);
-            $stmt ->bind_param('ii');
-
+            $stmt ->bind_param('iids', $id_producto, $cantidad_entrada, $precio_entrada, $fecha_entrada);
+            if($stmt -> execute()){
+                $stmt -> close();
+                return "Entrada creada exitosamente";
+            }else{
+                $stmt -> close();
+                return "Fallo al crear la entrada";
+            }
         }catch(\mysqli_sql_exception $e){
             return "Error: ". $e -> getMessage();
-
         }
     }
 }
