@@ -24,11 +24,20 @@ class FacturaDAO{
         $fecha = $this ->sanitizeMysql($this -> conn, $id_clientes);
         
         try{
-            
-
-
+            $query = 'CALL insertar_factura(?,?);';
+            $stmt = $this -> conn ->prepare($query);
+            $stmt ->bind_param('is', $id_clientes, $fecha);
+            if($stmt ->execute()){
+                $stmt ->close();
+                return "Se creo la factura";
+            }else{
+                $stmt -> close();
+                return "Fallo al crear la factura";
+            }
         }catch(\mysqli_sql_exception $e){
             return "Error: " . $e->getMessage();
         }
     }
+
+    public function 
 }
