@@ -52,7 +52,6 @@ class FacturaDAO{
             }
             $stmt->close();
             return $facturas;
-
         }catch(\mysqli_sql_exception $e){
             return "Error: " . $e->getMessage();
         }
