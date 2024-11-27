@@ -39,5 +39,22 @@ class FacturaDAO{
         }
     }
 
-    public function 
+    public function mostrarFacturas(){
+        try{
+            $query = 'SELECT * FROM total_facturacion_cliente;';
+            $stmt = $this ->conn ->prepare($query);
+            $stmt ->execute();
+            $resultado = $stmt -> get_result();
+            $facturas = array();
+
+            while($row = $resultado -> fetch_assoc()){
+                $facturas[] = new Factura(stripslashes($row['id_factura']), stripslashes($row['id_cliente']), stripslashes($row['fecha']));
+            }
+            $stmt->close();
+            return $facturas;
+
+        }catch(\mysqli_sql_exception $e){
+            return "Error: " . $e->getMessage();
+        }
+    }
 }
