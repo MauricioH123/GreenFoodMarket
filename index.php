@@ -11,6 +11,7 @@ use App\Controllers\ProveedorListarController;
 use App\Controllers\ProveedorController;
 use App\Controllers\InventarioListarController;
 use App\Controllers\FacturaCrearController;
+use App\Controllers\DetalleFacturaCreaController;
 
 $action  = isset($_GET['action']) ? $_GET['action'] : '';
 
@@ -134,7 +135,18 @@ switch ($action) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_clientes = $_POST['id_cliente'];
             $fecha = $_POST['fecha_factura'];
-            $controller->crearFactura($id_clientes,$fecha);
+            $controller->crearFactura($id_clientes, $fecha);
+        } else {
+            $controller->mostrarFormulario();
+        }
+        break;
+
+    case 'facturaD':
+        $controller = new DetalleFacturaCreaController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_clientes = $_POST['id_cliente'];
+            $fecha = $_POST['fecha_factura'];
+            $controller->crearFactura($id_clientes, $fecha);
         } else {
             $controller->mostrarFormulario();
         }
