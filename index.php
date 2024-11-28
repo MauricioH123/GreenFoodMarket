@@ -132,11 +132,9 @@ switch ($action) {
     case 'facturaC':
         $controller = new FacturaCrearController();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id_producto = $_POST['id_producto'];
-            $cantidad_entrada = $_POST['cantidad_entrada'];
-            $precio_entrada = $_POST['precio_entrada'];
-            $fecha_entrada = $_POST['fecha_entrada'];
-            $controller->validarFormulario($id_producto, $cantidad_entrada,  $precio_entrada,  $fecha_entrada);
+            $id_clientes = $_POST['id_cliente'];
+            $fecha = $_POST['fecha_factura'];
+            $controller->crearFactura($id_clientes,$fecha);
         } else {
             $controller->mostrarFormulario();
         }
