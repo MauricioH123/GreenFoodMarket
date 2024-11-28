@@ -4,6 +4,8 @@ namespace App\Models\Persistence;
 use App\Models\Entidades\Factura;
 use App\Database\Database;
 
+// require_once "/laragon/www/greend-food/vendor/autoload.php";
+
 class FacturaDAO{
     private $conn;
 
@@ -41,7 +43,7 @@ class FacturaDAO{
 
     public function mostrarFacturas(){
         try{
-            $query = 'SELECT * FROM total_facturacion_cliente;';
+            $query = "SELECT * FROM factura;";
             $stmt = $this ->conn ->prepare($query);
             $stmt ->execute();
             $resultado = $stmt -> get_result();
@@ -75,3 +77,6 @@ class FacturaDAO{
         }
     }
 }
+
+// $d = new FacturaDAO();
+// print_r($d ->mostrarFacturas());

@@ -11,6 +11,6 @@ class DetalleService{
     }
 
     public function crearFactura($id_factura, $id_producto, $cantidad, $precio_unitario){
-        $this ->detalleFacturaDAO->insertarDetalleFactura($id_factura, $id_producto, $cantidad, $precio_unitario);
+        return $this ->detalleFacturaDAO->insertarDetalleFactura($id_factura, $id_producto, $cantidad, $precio_unitario);
     }
 }

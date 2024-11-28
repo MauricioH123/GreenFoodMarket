@@ -15,7 +15,7 @@ class FacturaService{
     }
 
     public function mostrarFactura(){
-        $this ->facturaDAO ->mostrarFacturas();
+        return $this ->facturaDAO ->mostrarFacturas();
     }
 
     public function ultimaFactura(){

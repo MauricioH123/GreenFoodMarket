@@ -2,7 +2,7 @@
 namespace App\Views;
 
 class DetalleFacturaView extends BaseView{
-    public function render($mensaje)
+    public function render($mensaje, $facturas)
     {
         ob_start();
 ?>
@@ -59,19 +59,19 @@ class DetalleFacturaView extends BaseView{
                     break;
             }
             ?>
-            <form action="index.php?action=entradaC" method="post">
+            <form action="index.php?action=facturaD" method="post">
 
             <div class="mb-3">
-                    <label for="idProducto" class="form-label">Nombre del Producto</label>
-                    <select class="form-select" name="id_producto" aria-label="Default select example" required>
-                        <option selected hidden value="0">---Selecciona el Producto---</option>
-                        <?php foreach ($productos as $producto): ?>
-                        <option value="<?php echo $producto->id;?>"><?php echo $producto->nombre;?></option>
+                    <label for="idFactura" class="form-label">Numero de factura</label>
+                    <select class="form-select" name="id_factura" aria-label="Default select example" required>
+                        <option selected hidden value="0">---Selecciona el numero de la factura---</option>
+                        <?php foreach ($facturas as $factura): ?>
+                        <option value="<?php echo $factura->id_factura;?>"><?php echo $factura->id_factura;?></option>
                         <?php endforeach; ?>
                     </select>
                     <!-- <input type="number" id="idProveedor" name="id_proveedor" class="form-control" required> -->
                     <div id="idHelp" class="form-text">
-                        Por favor, ingrese el nombre del producto.
+                        Por favor, seleccione la factura.
                     </div>
                 </div>
 
