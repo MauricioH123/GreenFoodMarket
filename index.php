@@ -10,6 +10,7 @@ use App\Controllers\ClienteListarController;
 use App\Controllers\ProveedorListarController;
 use App\Controllers\ProveedorController;
 use App\Controllers\InventarioListarController;
+use App\Controllers\FacturaCrearController;
 
 $action  = isset($_GET['action']) ? $_GET['action'] : '';
 
@@ -98,9 +99,9 @@ switch ($action) {
         $controller = new ProveedorController();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre_proveedor = $_POST['nombre_proveedor'];
-            $controller->crearProveedor ($nombre_proveedor);
-        }else{
-            $controller ->mostrarFormulario();
+            $controller->crearProveedor($nombre_proveedor);
+        } else {
+            $controller->mostrarFormulario();
         }
         break;
     case 'inventarioL':
@@ -118,14 +119,26 @@ switch ($action) {
         exit;
     case 'entradaC':
         $controller = new EntradaCrearController();
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_producto = $_POST['id_producto'];
             $cantidad_entrada = $_POST['cantidad_entrada'];
             $precio_entrada = $_POST['precio_entrada'];
             $fecha_entrada = $_POST['fecha_entrada'];
-            $controller -> validarFormulario( $id_producto,$cantidad_entrada,  $precio_entrada,  $fecha_entrada);
-        }else{
-            $controller ->mostrarFormulario();
+            $controller->validarFormulario($id_producto, $cantidad_entrada,  $precio_entrada,  $fecha_entrada);
+        } else {
+            $controller->mostrarFormulario();
+        }
+        break;
+    case 'facturaC':
+        $controller = new FacturaCrearController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_producto = $_POST['id_producto'];
+            $cantidad_entrada = $_POST['cantidad_entrada'];
+            $precio_entrada = $_POST['precio_entrada'];
+            $fecha_entrada = $_POST['fecha_entrada'];
+            $controller->validarFormulario($id_producto, $cantidad_entrada,  $precio_entrada,  $fecha_entrada);
+        } else {
+            $controller->mostrarFormulario();
         }
         break;
     default:
