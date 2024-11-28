@@ -74,7 +74,7 @@ class FacturaCrearView extends BaseView
                         <select class="form-select" name="id_cliente" aria-label="Default select example" required>
                             <option selected hidden value="0">---Selecciona el cliente---</option>
                             <?php foreach ($clientes as $cliente): ?>
-                                <option value="<?php echo $cliente->id_cliente;?>"><?php echo $cliente->nombre; ?></option>
+                                <option value="<?php echo $cliente->id_cliente; ?>"><?php echo $cliente->nombre; ?></option>
                             <?php endforeach; ?>
                         </select>
                         <!-- <input type="number" id="idProveedor" name="id_proveedor" class="form-control" required> -->
@@ -91,8 +91,10 @@ class FacturaCrearView extends BaseView
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar Entrada</button>
+
+                <button type="submit" class="btn btn-primary">Guardar Factura</button>
             </form>
+
         </div>
 <?php
         $content = ob_get_clean();

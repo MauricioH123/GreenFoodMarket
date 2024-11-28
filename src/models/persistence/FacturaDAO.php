@@ -21,7 +21,7 @@ class FacturaDAO{
 
     public function crearFactura($id_clientes,$fecha){
         $id_clientes = $this ->sanitizeMysql($this -> conn, $id_clientes);
-        $fecha = $this ->sanitizeMysql($this -> conn, $fecha);
+        $fecha = $this ->sanitizeMysql($this -> conn, $id_clientes);
         
         try{
             $query = 'CALL insertar_factura(?,?);';
@@ -64,12 +64,12 @@ class FacturaDAO{
             $stmt ->execute();
             $stmt ->bind_result($id_factura);
             if ($stmt->fetch()) {
-                $stmt->close();
-                return $id_factura; // Retorna el último ID
-            } else {
-                $stmt->close();
-                return 0; // No hay facturas, retorna 0
-            }
+            $stmt->close();
+            return $id_factura; // Retorna el último ID
+        } else {
+            $stmt->close();
+            return 0; // No hay facturas, retorna 0
+        }
         }catch(\mysqli_sql_exception $e){
             return "Error: " . $e->getMessage();
         }
