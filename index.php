@@ -144,9 +144,11 @@ switch ($action) {
     case 'facturaD':
         $controller = new DetalleFacturaCreaController();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id_clientes = $_POST['id_cliente'];
-            $fecha = $_POST['fecha_factura'];
-            $controller->crearFactura($id_clientes, $fecha);
+            $id_factura = $_POST['id_factura'];
+            $id_producto = $_POST['id_producto'];
+            $cantidad = $_POST['cantidad'];
+            $precio_unitario = $_POST['precio_unitario'];
+            $controller->crearDetalle($id_factura, $id_producto, $cantidad, $precio_unitario);
         } else {
             $controller->mostrarFormulario();
         }
