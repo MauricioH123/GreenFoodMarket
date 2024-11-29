@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Views;
 
-class DetalleFacturaView extends BaseView{
-    public function render($mensaje, $facturas)
+class DetalleFacturaView extends BaseView
+{
+    public function render($mensaje, $facturas, $productos)
     {
         ob_start();
 ?>
@@ -61,50 +63,71 @@ class DetalleFacturaView extends BaseView{
             ?>
             <form action="index.php?action=facturaD" method="post">
 
-            <div class="mb-3">
-                    <label for="idFactura" class="form-label">Numero de factura</label>
-                    <select class="form-select" name="id_factura" aria-label="Default select example" required>
-                        <option selected hidden value="0">---Selecciona el numero de la factura---</option>
-                        <?php foreach ($facturas as $factura): ?>
-                        <option value="<?php echo $factura->id_factura;?>"><?php echo $factura->id_factura;?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <!-- <input type="number" id="idProveedor" name="id_proveedor" class="form-control" required> -->
-                    <div id="idHelp" class="form-text">
-                        Por favor, seleccione la factura.
-                    </div>
-                </div>
-
                 <div class="mb-3">
-                    <label for="precioVenta" class="form-label">Cantidad</label>
-                    <input type="number" step="0.01" id="precioVenta" name="cantidad_entrada" class="form-control" required>
-                    <div id="idHelp" class="form-text">
-                        Por favor, ingrese la cantidad en unidades del producto.
+                    <div class="col">
+                        <label for="idFactura" class="form-label">Numero de factura</label>
+                        <select class="form-select" name="id_factura" aria-label="Default select example" required>
+                            <option selected hidden value="0">---Selecciona el numero de la factura---</option>
+                            <?php foreach ($facturas as $factura): ?>
+                                <option value="<?php echo $factura->id_factura; ?>"><?php echo $factura->id_factura; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <!-- <input type="number" id="idProveedor" name="id_proveedor" class="form-control" required> -->
+                        <div id="idHelp" class="form-text">
+                            Por favor, seleccione la factura.
+                        </div>
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="precioVenta" class="form-label">Precio de entrada</label>
-                    <input type="number" step="0.01" id="precioVenta" name="precio_entrada" class="form-control" required>
-                    <div id="idHelp" class="form-text">
-                        Por favor, ingrese el precio de entrada del producto.
+                <div id="productos-container" class="mb-3">
+                    <div class="row producto">
+                        <div class="col">
+                            <label for="idProducto" class="form-label">Producto</label>
+                            <select class="form-select" name="productos[id_producto][]" required>
+                                <option selected hidden value="0">---Selecciona el producto---</option>
+                                <?php foreach ($productos as $producto): ?>
+                                    <option value="<?php echo $producto->id; ?>"><?php echo $producto->nombre; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input type="number" step="1" name="productos[cantidad][]" class="form-control" required>
+                        </div>
+
+                        <div class="col">
+                            <label for="precioVenta" class="form-label">Precio de venta</label>
+                            <input type="number" step="0.01" name="productos[precio][]" class="form-control" required>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="precioVenta" class="form-label">Fecha de entrada</label>
-                    <input type="date" step="0.01" id="precioVenta" name="fecha_entrada" class="form-control" required>
-                    <div id="idHelp" class="form-text">
-                        Por favor, ingrese la fecha en la que ingreso el producto.
-                    </div>
-                </div>
 
-                <button type="submit" class="btn btn-primary">Guardar Entrada</button>
+                    <button type="button" id="agregar-producto" class="btn btn-secondary">Agregar Producto</button>
+
+
+                    <button type="submit" class="btn btn-primary">Guardar Detalle</button>
+
+
             </form>
         </div>
+
+        <script>
+            // JavaScript para agregar dinámicamente productos al formulario.
+            document.getElementById('agregar-producto').addEventListener('click', function() {
+                const container = document.getElementById('productos-container');
+                const productoTemplate = document.querySelector('.producto');
+                const nuevoProducto = productoTemplate.cloneNode(true);
+                container.appendChild(nuevoProducto);
+            });
+        </script>
+
+        
 <?php
         $content = ob_get_clean();
         $this->renderTemplate($content);
     }
 }
+
 

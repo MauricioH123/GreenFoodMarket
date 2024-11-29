@@ -23,7 +23,7 @@ class FacturaDAO{
 
     public function crearFactura($id_clientes,$fecha){
         $id_clientes = $this ->sanitizeMysql($this -> conn, $id_clientes);
-        $fecha = $this ->sanitizeMysql($this -> conn, $id_clientes);
+        $fecha = $this ->sanitizeMysql($this -> conn, $fecha);
         
         try{
             $query = 'CALL insertar_factura(?,?);';
@@ -79,4 +79,5 @@ class FacturaDAO{
 }
 
 // $d = new FacturaDAO();
-// print_r($d ->mostrarFacturas());
+// echo 
+// $d->crearFactura(3,"2024-11-29");
