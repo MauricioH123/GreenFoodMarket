@@ -27,7 +27,7 @@ class DetalleFacturaCreaController{
 
     public function crearDetalle($id_factura, $id_producto, $cantidad, $precio_unitario){
         $crearD = $this ->detalleService ->crearFactura($id_factura, $id_producto, $cantidad, $precio_unitario);
-        $this ->mostrarFormulario($crearD);
+        header("Location: index.php?action=facturaD");
     }
 
 }
