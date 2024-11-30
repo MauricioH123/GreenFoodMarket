@@ -166,7 +166,9 @@ switch ($action) {
         $controller = new DetalleFacturaCreaController();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_factura = $_POST['id_factura'];
-            $controller->mostrarDetalleFactua($id_factura);
+            $nombre = $_POST['nombre'];
+            $id_facturaMostrar = $_POST['id_factura'];
+            $controller->mostrarDetalleFactua($id_factura, $nombre, $id_facturaMostrar);
         }
         break;
     default:

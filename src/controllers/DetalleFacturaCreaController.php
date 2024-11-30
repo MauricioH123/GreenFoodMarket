@@ -34,9 +34,9 @@ class DetalleFacturaCreaController{
         header("Location: index.php?action=facturaD");
     }
 
-    public function mostrarDetalleFactua($id_factura){
+    public function mostrarDetalleFactua($id_factura,$nombre, $id_facturaMostrar){
         $facturasDetalle = $this ->detalleService->detallesFacturas($id_factura);
-        $this -> detalleFacturasClientes ->render($facturasDetalle);
+        $this -> detalleFacturasClientes ->render($facturasDetalle, $nombre, $id_facturaMostrar);
     }
 
 }
