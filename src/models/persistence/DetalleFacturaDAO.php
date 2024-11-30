@@ -72,7 +72,7 @@ class DetalleFacturaDAO
         }
     }
 
-    public function ventasMensuales(){
+    public function ventasDiarias(){
         try{
             $query = "SELECT 
             t.fecha,

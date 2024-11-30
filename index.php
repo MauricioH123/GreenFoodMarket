@@ -182,6 +182,6 @@ switch ($action) {
         break;
     default:
         $controller = new HomeController();
-        $controller->index();
+        $controller->mostrarVentasMensuales();
         break;
 }

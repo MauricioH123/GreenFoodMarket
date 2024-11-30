@@ -8,7 +8,6 @@ use App\Models\Logica\FacturaService;
 use App\Models\Logica\ProductoService;
 use App\Views\DetalleDefacturasCliente;
 use App\Views\ImprimirDetalleDeFactura;
-use App\Views\HomeView;
 
 class DetalleFacturaCreaController
 {
@@ -18,7 +17,6 @@ class DetalleFacturaCreaController
     private $productos;
     private $detalleFacturasClientes;
     private $imprimirDetalleDeFactura;
-    private $homeView;
 
     public function __construct()
     {
@@ -28,7 +26,6 @@ class DetalleFacturaCreaController
         $this->productos = new ProductoService();
         $this->detalleFacturasClientes = new DetalleDefacturasCliente();
         $this->imprimirDetalleDeFactura = new ImprimirDetalleDeFactura();
-        $this->homeView = new HomeView();
     }
 
     public function mostrarFormulario($mensaje = "")
@@ -54,16 +51,5 @@ class DetalleFacturaCreaController
     {
         $facturasDetalle = $this->detalleService->detallesFacturas($id_factura);
         $this->imprimirDetalleDeFactura->render($facturasDetalle, $nombre, $id_facturaMostrar);
-    }
-
-    public function mostrarVentasMensuales()
-    {
-        $ventasMensuales = $this->detalleService->ventasMensuales();
-        $ventasChartkick = [];
-        foreach ($ventasMensuales as $dato) {
-            $ventasChartkick[$dato['fecha']] = $dato['ventas'];
-        }
-        $jsonVentas = json_encode($ventasChartkick);
-        $this->homeView->render($jsonVentas);
     }
 }

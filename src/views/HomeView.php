@@ -11,9 +11,32 @@ class HomeView extends BaseView
 
         <div class="container">
             <div class=" row ">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjO7WU8jB8wVDasnt-MMRi4qmxdXs-y04vNONkQfv99WV8Pck4gcKIItc_S9CbrM4uX34&usqp=CAU" class="img-fluid" alt="...">
+                <div class="col">
+                    <div style="text-align: center;">
+                        <h2>Ventas Mensuales</h2>
+                        <!-- Contenedor de la gráfica -->
+                        <div id="lineChart" style="height: 300px; width: 80%; margin: auto;"></div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <script>
+        // Datos provenientes de PHP
+        var datos = <?php echo $ventas; ?>;
+
+        // Opciones para la gráfica
+        var opciones = {
+            xtitle: "Fecha",
+            ytitle: "Ventas ($)",
+            legend: true,
+            colors: ["#28a745"], // Color verde
+            format: "currency" // Formato de moneda
+        };
+
+        // Crear la gráfica
+        new Chartkick.LineChart("lineChart", datos, opciones);
+    </script>
 
 
 <?php

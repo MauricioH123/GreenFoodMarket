@@ -18,7 +18,7 @@ class DetalleService{
         return $this -> detalleFacturaDAO ->mostrarDetalle($id_factura);
     }
 
-    public function ventasMensuales(){
-        return $this ->detalleFacturaDAO ->ventasMensuales();
+    public function ventasDiarias(){
+        return $this ->detalleFacturaDAO ->ventasDiarias();
     }
 }
