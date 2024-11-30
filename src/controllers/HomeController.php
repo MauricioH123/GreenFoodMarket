@@ -13,14 +13,23 @@ class HomeController{
         $this->detalleService = new DetalleService();
     }
 
-    public function mostrarVentasDiarias()
+    public function mostrarVentas()
     {
-        $ventasMensuales = $this->detalleService->ventasDiarias();
+        $ventasDiarias = $this->detalleService->ventasDiarias();
+        $ventasD = [];
+        foreach ($ventasDiarias as $dato) {
+            $ventasD[$dato['fecha']] = $dato['ventas'];
+        }
+        
+
+        $ventasMensuales = $this->detalleService->ventasMensuales();
         $ventasChartkick = [];
         foreach ($ventasMensuales as $dato) {
-            $ventasChartkick[$dato['fecha']] = $dato['ventas'];
+            $ventasChartkick[$dato['mes']] = $dato['ventas'];
         }
-        $jsonVentas = json_encode($ventasChartkick);
-        $this->view->render($jsonVentas);
+        $jsonVentasDiaria = json_encode($ventasD);
+        $jsonVentasMensuales = json_encode($ventasChartkick);
+
+        $this->view->render($jsonVentasDiaria, $jsonVentasMensuales);
     }
 }

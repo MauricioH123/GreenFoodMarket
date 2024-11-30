@@ -34,7 +34,8 @@ class DetalleFacturaDAO
         }
     }
 
-    public function mostrarDetalle($id_factura){
+    public function mostrarDetalle($id_factura)
+    {
         try {
             $query = "SELECT
             pr.Nombre_producto,
@@ -53,7 +54,7 @@ class DetalleFacturaDAO
             ;";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("i", $id_factura);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $resultado = $stmt->get_result();
                 $productos = array();
                 while ($row = $resultado->fetch_assoc()) {
@@ -72,8 +73,9 @@ class DetalleFacturaDAO
         }
     }
 
-    public function ventasDiarias(){
-        try{
+    public function ventasDiarias()
+    {
+        try {
             $query = "SELECT 
             t.fecha,
             SUM(t.total_factura) AS ventas
@@ -83,21 +85,52 @@ class DetalleFacturaDAO
             t.fecha
             ORDER BY
             t.fecha;";
-            $stmt = $this ->conn ->prepare($query);
-            if($stmt ->execute()){
+            $stmt = $this->conn->prepare($query);
+            if ($stmt->execute()) {
                 $resultado = $stmt->get_result();
                 $ventas = array();
-                while($row = $resultado->fetch_assoc()){
+                while ($row = $resultado->fetch_assoc()) {
                     $ventas[] = [
                         'fecha' => $row['fecha'],
                         'ventas' => $row['ventas']
                     ];
                 }
-                $stmt ->close();
+                $stmt->close();
                 return $ventas;
             }
-            
-        }catch(\mysqli_sql_exception $e){
+        } catch (\mysqli_sql_exception $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    public function ventasMensuales()
+    {
+        try {
+            $query = "SELECT 
+            YEAR(t.fecha) AS año,   -- Extraer el año
+            MONTH(t.fecha) AS mes,  -- Extraer el mes
+            SUM(t.total_factura) AS ventas
+            FROM 
+            total_facturas_clientes AS t
+            GROUP BY
+            YEAR(t.fecha), MONTH(t.fecha)  -- Agrupar por año y mes
+            ORDER BY
+            YEAR(t.fecha), MONTH(t.fecha);  -- Ordenar por año y mes
+            ";
+            $stmt = $this->conn->prepare($query);
+            if ($stmt->execute()) {
+                $resultado = $stmt->get_result();
+                $ventas = array();
+                while ($row = $resultado->fetch_assoc()) {
+                    $ventas[] = [
+                        'mes' => $row['mes'],
+                        'ventas' => $row['ventas']
+                    ];
+                }
+                $stmt->close();
+                return $ventas;
+            }
+        } catch (\mysqli_sql_exception $e) {
             return "Error: " . $e->getMessage();
         }
     }

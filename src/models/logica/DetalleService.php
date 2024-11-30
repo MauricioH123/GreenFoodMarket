@@ -21,4 +21,8 @@ class DetalleService{
     public function ventasDiarias(){
         return $this ->detalleFacturaDAO ->ventasDiarias();
     }
+
+    public function ventasMensuales(){
+        return $this ->detalleFacturaDAO ->ventasMensuales();
+    }
 }
