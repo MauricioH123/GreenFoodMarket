@@ -21,15 +21,29 @@ class HomeController{
             $ventasD[$dato['fecha']] = $dato['ventas'];
         }
         
-
         $ventasMensuales = $this->detalleService->ventasMensuales();
         $ventasChartkick = [];
         foreach ($ventasMensuales as $dato) {
             $ventasChartkick[$dato['mes']] = $dato['ventas'];
         }
-        $jsonVentasDiaria = json_encode($ventasD);
-        $jsonVentasMensuales = json_encode($ventasChartkick);
 
-        $this->view->render($jsonVentasDiaria, $jsonVentasMensuales);
+        $comprasDiarias = $this->detalleService->comprasDiarias();
+        $comprasD = [];
+        foreach ($comprasDiarias as $dato) {
+            $comprasD[$dato['fecha']] = $dato['total'];
+        }
+
+        $comprasMensuales = $this->detalleService->comprasMensuales();
+        $comprasM = [];
+        foreach ($comprasMensuales as $dato) {
+            $comprasM[$dato['mes']] = $dato['compra'];
+        }
+        
+        $jsonVentasDiaria = json_encode($ventasD);
+        $jsonComprasDiaria = json_encode($comprasD);
+        $jsonVentasMensuales = json_encode($ventasChartkick);
+        $jsonComprasMensuales = json_encode($comprasM);
+
+        $this->view->render($jsonVentasDiaria, $jsonVentasMensuales, $jsonComprasDiaria,$jsonComprasMensuales);
     }
 }

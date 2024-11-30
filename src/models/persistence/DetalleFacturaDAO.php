@@ -134,6 +134,67 @@ class DetalleFacturaDAO
             return "Error: " . $e->getMessage();
         }
     }
+
+    public function comprasDiarias()
+    {
+        try {
+            $query = "SELECT 
+            e.fecha_entrada AS fecha,
+            SUM(e.precio_entrada * e.cantidad_entrada) AS total
+            FROM
+            entradas AS e
+            GROUP BY
+            e.fecha_entrada
+            ";
+            $stmt = $this->conn->prepare($query);
+            if ($stmt->execute()) {
+                $resultado = $stmt->get_result();
+                $compras = array();
+                while ($row = $resultado->fetch_assoc()) {
+                    $compras[] = [
+                        'fecha' => $row['fecha'],
+                        'total' => $row['total']
+                    ];
+                }
+                $stmt->close();
+                return $compras;
+            }
+        } catch (\mysqli_sql_exception $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    public function comprasMensuales()
+    {
+        try {
+            $query = "SELECT 
+    YEAR(e.fecha_entrada) AS año,   -- Extraer el año
+    MONTH(e.fecha_entrada) AS mes,  -- Extraer el mes
+    SUM(e.cantidad_entrada * e.precio_entrada) AS compra
+FROM 
+    entradas AS e
+GROUP BY
+    YEAR(e.fecha_entrada), MONTH(e.fecha_entrada)  -- Agrupar por año y mes
+ORDER BY
+    YEAR(e.fecha_entrada), MONTH(e.fecha_entrada);  -- Ordenar por año y mes
+";
+            $stmt = $this->conn->prepare($query);
+            if ($stmt->execute()) {
+                $resultado = $stmt->get_result();
+                $compras = array();
+                while ($row = $resultado->fetch_assoc()) {
+                    $compras[] = [
+                        'mes' => $row['mes'],
+                        'compra' => $row['compra']
+                    ];
+                }
+                $stmt->close();
+                return $compras;
+            }
+        } catch (\mysqli_sql_exception $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
 }
 
 // $d = new DetalleFacturaDAO();

@@ -25,4 +25,12 @@ class DetalleService{
     public function ventasMensuales(){
         return $this ->detalleFacturaDAO ->ventasMensuales();
     }
+
+    public function comprasDiarias(){
+        return $this ->detalleFacturaDAO ->comprasDiarias();
+    }
+
+    public function comprasMensuales(){
+        return $this ->detalleFacturaDAO ->comprasMensuales();
+    }
 }
