@@ -80,7 +80,7 @@ class DetalleFacturaView extends BaseView
                 <button type="button" id="agregar-producto" class="btn btn-secondary">Agregar Producto</button>
 
                 <div class="mt-3">
-                    <h4>Total: $<span id="total-factura">0.00</span></h4>
+                    <h4>Total: <span id="total-factura">0.00</span></h4>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Guardar Detalle</button>

@@ -23,7 +23,12 @@ class FacturasListar extends BaseView{
                             <td><?php echo $factura['nombre']; ?></td>
                             <td><?php echo $factura['fecha']; ?></td>
                             <td><?php echo '$' . number_format($factura['total_factura'], 2); ?></td>
-                            <td><a href="index.php">Ver factura</a></td>
+                            <td>
+                                <form action="index.php?action=detalleFV">
+                                    <input type="number" hidden value="<?php echo $factura['id_factura']; ?>">
+                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

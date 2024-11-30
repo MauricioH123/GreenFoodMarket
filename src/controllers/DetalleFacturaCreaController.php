@@ -5,18 +5,22 @@ use App\Models\Logica\DetalleService;
 use App\Views\DetalleFacturaView;
 use App\Models\Logica\FacturaService;
 use App\Models\Logica\ProductoService;
+use App\Views\DetalleDefacturasCliente;
 
 class DetalleFacturaCreaController{
     private $detalleService;
     private $view;
     private $facturaService;
     private $productos;
+    private $detalleFacturasClientes;
 
     public function __construct(){
         $this ->detalleService = new DetalleService();
         $this ->view = new DetalleFacturaView();
         $this -> facturaService = new FacturaService();
         $this -> productos = new ProductoService();
+        $this -> detalleFacturasClientes = new DetalleDefacturasCliente();
+
     }
 
     public function mostrarFormulario($mensaje = ""){
@@ -32,6 +36,7 @@ class DetalleFacturaCreaController{
 
     public function mostrarDetalleFactua($id_factura){
         $facturasDetalle = $this ->detalleService->detallesFacturas($id_factura);
+        $this -> detalleFacturasClientes ->render($facturasDetalle);
     }
 
 }
