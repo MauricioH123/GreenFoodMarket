@@ -142,18 +142,15 @@ switch ($action) {
         break;
 
     case 'facturaD':
-        $controller = new DetalleFacturaCreaController();
+        $controller = new FacturaCrearController();
+        $controller ->mostrarTotalfacturas();
+        break;
+    case 'facturaV':
+        $controller = new FacturaCrearController();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id_factura = $_POST['id_factura'];
-            $productos = $_POST['productos'];
-            foreach ($productos['id_producto'] as $index => $id_producto) {
-                $cantidad = $productos['cantidad'][$index];
-                $precio_unitario = $productos['precio'][$index];
-            
-                // Procesar cada producto
-                $controller->crearDetalle($id_factura, $id_producto, $cantidad, $precio_unitario);
-            }
-            // $controller->crearDetalle($id_factura, $id_producto, $cantidad, $precio_unitario);
+            $id_clientes = $_POST['id_cliente'];
+            $fecha = $_POST['fecha_factura'];
+            $controller->crearFactura($id_clientes, $fecha);
         } else {
             $controller->mostrarFormulario();
         }

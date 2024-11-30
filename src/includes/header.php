@@ -28,6 +28,13 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="index.php?action=facturaD">Ir a factura</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="index.php?action=facturaV">Ver Facturas</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                             </ul>
                         </li>
 

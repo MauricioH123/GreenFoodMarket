@@ -21,4 +21,8 @@ class FacturaService{
     public function ultimaFactura(){
         return $this ->facturaDAO-> ultimoIdFactura();
     }
+
+    public function mostrarTotalfacturas(){
+        return $this ->facturaDAO ->facturasTotales();
+    }
 }
