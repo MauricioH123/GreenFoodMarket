@@ -71,8 +71,38 @@ class DetalleFacturaDAO
             return "Error: " . $e->getMessage();
         }
     }
+
+    public function ventasMensuales(){
+        try{
+            $query = "SELECT 
+            t.fecha,
+            SUM(t.total_factura) AS ventas
+            FROM 
+            total_facturas_clientes AS t
+            GROUP BY
+            t.fecha
+            ORDER BY
+            t.fecha;";
+            $stmt = $this ->conn ->prepare($query);
+            if($stmt ->execute()){
+                $resultado = $stmt->get_result();
+                $ventas = array();
+                while($row = $resultado->fetch_assoc()){
+                    $ventas[] = [
+                        'fecha' => $row['fecha'],
+                        'ventas' => $row['ventas']
+                    ];
+                }
+                $stmt ->close();
+                return $ventas;
+            }
+            
+        }catch(\mysqli_sql_exception $e){
+            return "Error: " . $e->getMessage();
+        }
+    }
 }
 
 // $d = new DetalleFacturaDAO();
 // print_r(
-// $d->mostrarDetalle(3));
+// $d->ventasMensuales());

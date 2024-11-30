@@ -4,7 +4,7 @@ namespace App\Views;
 
 class HomeView extends BaseView
 {
-    public function render()
+    public function render($ventas)
     {
         ob_start();
 ?>
