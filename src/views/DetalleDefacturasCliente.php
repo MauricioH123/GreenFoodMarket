@@ -20,10 +20,6 @@ class DetalleDefacturasCliente extends BaseView{
             <div class="col">
                 <h3>Cliente: <?php echo $nombreCliente; ?></h3>
             </div>
-                    <!-- Botón para generar PDF -->
-        <div class="text-end col">
-            <a href="/ruta-para-generar-pdf/<?php echo $id_facturaMostrar; ?>" class="btn btn-primary">Generar PDF</a>
-        </div>
         </div>
 
         <table class="table table-striped">

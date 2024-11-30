@@ -6,6 +6,7 @@ use App\Views\DetalleFacturaView;
 use App\Models\Logica\FacturaService;
 use App\Models\Logica\ProductoService;
 use App\Views\DetalleDefacturasCliente;
+use App\Views\ImprimirDetalleDeFactura;
 
 class DetalleFacturaCreaController{
     private $detalleService;
@@ -13,6 +14,7 @@ class DetalleFacturaCreaController{
     private $facturaService;
     private $productos;
     private $detalleFacturasClientes;
+    private $imprimirDetalleDeFactura;
 
     public function __construct(){
         $this ->detalleService = new DetalleService();
@@ -20,6 +22,7 @@ class DetalleFacturaCreaController{
         $this -> facturaService = new FacturaService();
         $this -> productos = new ProductoService();
         $this -> detalleFacturasClientes = new DetalleDefacturasCliente();
+        $this -> imprimirDetalleDeFactura = new ImprimirDetalleDeFactura();
 
     }
 
@@ -37,6 +40,12 @@ class DetalleFacturaCreaController{
     public function mostrarDetalleFactua($id_factura,$nombre, $id_facturaMostrar){
         $facturasDetalle = $this ->detalleService->detallesFacturas($id_factura);
         $this -> detalleFacturasClientes ->render($facturasDetalle, $nombre, $id_facturaMostrar);
+    }
+
+    public function imprimirDetalle($id_factura,$nombre, $id_facturaMostrar){
+        $facturasDetalle = $this ->detalleService->detallesFacturas($id_factura);
+        $this -> imprimirDetalleDeFactura ->render($facturasDetalle, $nombre, $id_facturaMostrar);
+
     }
 
 }

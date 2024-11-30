@@ -27,7 +27,14 @@ class FacturasListar extends BaseView{
                                 <form action="index.php?action=detalleFV" method="post">
                                     <input type="number" hidden name="id_factura" value="<?php echo $factura['id_factura']; ?>">
                                     <input type="text" hidden name="nombre" value="<?php echo $factura['nombre']; ?>">
-                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                    <button type="submit" class="btn btn-primary">Ver</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="index.php?action=imprimirDF" method="post">
+                                    <input type="number" hidden name="id_factura" value="<?php echo $factura['id_factura']; ?>">
+                                    <input type="text" hidden name="nombre" value="<?php echo $factura['nombre']; ?>">
+                                    <button type="submit" class="btn btn-primary">Imprimir</button>
                                 </form>
                             </td>
                         </tr>
