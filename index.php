@@ -163,8 +163,11 @@ switch ($action) {
         $controller->mostrarTotalfacturas();
         break;
     case 'detalleFV':
-        $controller = new FacturaCrearController();
-        $controller->mostrarTotalfacturas();
+        $controller = new DetalleFacturaCreaController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_factura = $_POST['id_factura'];
+            $controller->mostrarDetalleFactua($id_factura);
+        }
         break;
     default:
         $controller = new HomeController();
