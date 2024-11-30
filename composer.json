@@ -5,6 +5,7 @@
       }
     },
     "require": {
-        "respect/validation": "^2.3"
+        "respect/validation": "^2.3",
+        "tecnickcom/tcpdf": "^6.7"
     }
 }
