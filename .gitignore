@@ -1,2 +1,6 @@
 package-lock.json
 /vendor/
+/.env
+*.log
+*.cache
+.idea/
