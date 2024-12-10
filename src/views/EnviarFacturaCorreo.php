@@ -28,7 +28,7 @@ class EnviarFacturaCorreo extends BaseView{
             $mail->Body = $this ->detalle($productos, $nombreCliente, $id_facturaMostrar);
 
             $mail->send();
-            // echo "Correo enviado correctamente.";
+            echo "Correo enviado correctamente.";
         }catch(Exception $e){
             // echo "Error al enviar el correo: {$mail->ErrorInfo}";
         }
