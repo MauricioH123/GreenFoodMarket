@@ -180,6 +180,9 @@ switch ($action) {
             $controller->imprimirDetalle($id_factura, $nombre, $id_facturaMostrar);
         }
         break;
+    case 'comprasExcel':
+        $controller = new EntradaCrearController();
+        $controller ->excelEntradas();
     default:
         $controller = new HomeController();
         $controller->mostrarVentas();

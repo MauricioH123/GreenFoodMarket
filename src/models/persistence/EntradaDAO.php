@@ -52,6 +52,8 @@ class EntradaDAO{
             FROM
             entradas AS e
             GROUP BY
+            e.fecha_entrada
+            ORDER BY
             e.fecha_entrada;";
             $stmt = $this -> conn -> prepare($query);
             if($stmt->execute()){

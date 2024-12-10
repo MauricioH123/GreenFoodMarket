@@ -5,16 +5,20 @@ use App\Models\Logica\EntradaService;
 use App\Views\EntradaCrearView;
 use Respect\Validation\Validator as v;
 use App\Models\Logica\ProductoService;
+use App\Views\ExcelCompras;
 
 class EntradaCrearController{
     private $entradaService;
     private $view;
     private $productoService;
+    private $excelCompras;
 
     public function __construct(){
         $this -> entradaService = new EntradaService();
         $this -> view = new EntradaCrearView();
         $this -> productoService = new ProductoService();
+        $this ->excelCompras = new ExcelCompras();
+
     }
 
     public function mostrarFormulario($mensaje = ""){
@@ -49,5 +53,6 @@ class EntradaCrearController{
 
     public function excelEntradas(){
         $entradas = $this ->entradaService ->mostrarEntradas();
+        $this ->excelCompras ->render($entradas);
     }
 }
