@@ -44,6 +44,7 @@ class FacturasListar extends BaseView
                             <form action="index.php?action=enviarCorreo" method="post">
                                 <input type="number" hidden name="id_factura" value="<?php echo $factura['id_factura']; ?>">
                                 <input type="text" hidden name="nombre" value="<?php echo $factura['nombre']; ?>">
+                                <input type="email" hidden name="correo" value="<?php echo $factura['correo']?>">
                                 <button type="submit" class="btn btn-primary">Enviar</button>
                             </form>
                         </td>

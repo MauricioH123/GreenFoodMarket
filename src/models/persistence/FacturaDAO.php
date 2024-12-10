@@ -97,7 +97,8 @@ class FacturaDAO
                         'id_factura' => $row['id_factura'],
                         'nombre' => $row['nombre'],
                         'fecha' => $row['fecha'],
-                        'total_factura' => $row['total_factura']
+                        'total_factura' => $row['total_factura'],
+                        'correo' => $row['correo']
                     ];
                 }
                 $stmt->close();

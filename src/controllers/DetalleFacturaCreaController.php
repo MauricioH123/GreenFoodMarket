@@ -8,7 +8,7 @@ use App\Models\Logica\FacturaService;
 use App\Models\Logica\ProductoService;
 use App\Views\DetalleDefacturasCliente;
 use App\Views\ImprimirDetalleDeFactura;
-use app\Views\EnviarFacturaCorreo;
+use App\Views\EnviarFacturaCorreo;
 
 class DetalleFacturaCreaController
 {
@@ -56,9 +56,10 @@ class DetalleFacturaCreaController
         $this->imprimirDetalleDeFactura->render($facturasDetalle, $nombre, $id_facturaMostrar);
     }
 
-    public function enviarCorreo($destinatario, $asunto, $htmlFactura){
-        // $facturasDetalle = $this->detalleService->detallesFacturas($id_factura);
-        $this ->enviarFacturaCorreo->render($destinatario, $asunto, $htmlFactura);
-
+    public function enviarCorreo($id_factura, $nombre, $id_facturaMostrar, $destinatario){
+        $facturasDetalle = $this->detalleService->detallesFacturas($id_factura);
+        $this ->enviarFacturaCorreo->render($destinatario, $facturasDetalle, $nombre, $id_facturaMostrar);
     }
+
+
 }

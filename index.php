@@ -183,6 +183,16 @@ switch ($action) {
     case 'comprasExcel':
         $controller = new EntradaCrearController();
         $controller ->excelEntradas();
+        break;
+    case 'enviarCorreo':
+        $controller = new DetalleFacturaCreaController();
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id_factura = $_POST['id_factura'];
+            $nombre = $_POST['nombre'];
+            $id_facturaMostrar = $_POST['id_factura'];
+            $correo = $_POST['correo'];
+            $controller->enviarCorreo($id_factura, $nombre, $id_facturaMostrar, $correo);
+        }
     default:
         $controller = new HomeController();
         $controller->mostrarVentas();
