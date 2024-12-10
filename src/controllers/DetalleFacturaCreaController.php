@@ -8,6 +8,7 @@ use App\Models\Logica\FacturaService;
 use App\Models\Logica\ProductoService;
 use App\Views\DetalleDefacturasCliente;
 use App\Views\ImprimirDetalleDeFactura;
+use app\Views\EnviarFacturaCorreo;
 
 class DetalleFacturaCreaController
 {
@@ -17,6 +18,7 @@ class DetalleFacturaCreaController
     private $productos;
     private $detalleFacturasClientes;
     private $imprimirDetalleDeFactura;
+    private $enviarFacturaCorreo;
 
     public function __construct()
     {
@@ -26,6 +28,7 @@ class DetalleFacturaCreaController
         $this->productos = new ProductoService();
         $this->detalleFacturasClientes = new DetalleDefacturasCliente();
         $this->imprimirDetalleDeFactura = new ImprimirDetalleDeFactura();
+        $this->enviarFacturaCorreo = new EnviarFacturaCorreo();
     }
 
     public function mostrarFormulario($mensaje = "")
@@ -51,5 +54,11 @@ class DetalleFacturaCreaController
     {
         $facturasDetalle = $this->detalleService->detallesFacturas($id_factura);
         $this->imprimirDetalleDeFactura->render($facturasDetalle, $nombre, $id_facturaMostrar);
+    }
+
+    public function enviarCorreo($id_factura, $nombre, $id_facturaMostrar){
+        $facturasDetalle = $this->detalleService->detallesFacturas($id_factura);
+        $this ->enviarFacturaCorreo->render($facturasDetalle, $nombre, $id_facturaMostrar);
+
     }
 }
