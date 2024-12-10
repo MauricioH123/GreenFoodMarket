@@ -56,9 +56,9 @@ class DetalleFacturaCreaController
         $this->imprimirDetalleDeFactura->render($facturasDetalle, $nombre, $id_facturaMostrar);
     }
 
-    public function enviarCorreo($id_factura, $nombre, $id_facturaMostrar){
-        $facturasDetalle = $this->detalleService->detallesFacturas($id_factura);
-        $this ->enviarFacturaCorreo->render($facturasDetalle, $nombre, $id_facturaMostrar);
+    public function enviarCorreo($destinatario, $asunto, $htmlFactura){
+        // $facturasDetalle = $this->detalleService->detallesFacturas($id_factura);
+        $this ->enviarFacturaCorreo->render($destinatario, $asunto, $htmlFactura);
 
     }
 }
