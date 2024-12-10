@@ -5,7 +5,7 @@ namespace App\Models\Persistence;
 use App\Models\Entidades\Factura;
 use App\Database\Database;
 
-// require_once "/laragon/www/greend-food/vendor/autoload.php";
+// require_once "/laragon/www/proyectos/GreenFoodMarket/vendor/autoload.php";
 
 class FacturaDAO
 {
@@ -107,7 +107,35 @@ class FacturaDAO
             return "Error: " . $e->getMessage();
         }
     }
+
+    public function ventasDiarias(){
+        try {
+            $query = "SELECT 
+            t.fecha,
+            t.total_factura AS ventas
+            FROM
+            total_facturas_clientes AS t
+            ORDER BY
+            t.fecha;";
+            $stmt = $this->conn->prepare($query);
+            if ($stmt->execute()) {
+                $resultado = $stmt->get_result();
+                $productos = array();
+                while ($row = $resultado->fetch_assoc()) {
+                    $productos[] = [
+                        "fecha" => $row["fecha"],
+                        "ventas" => $row["ventas"]
+                    ];
+                }
+                $stmt->close();
+                return $productos;
+            }
+        }
+        catch (\mysqli_sql_exception $e) {
+            return "". $e->getMessage();
+        }
+    }
 }
 
 // $d = new FacturaDAO();
-// print_r($d->facturasTotales()) ;
+// print_r($d->ventasDiarias()) ;

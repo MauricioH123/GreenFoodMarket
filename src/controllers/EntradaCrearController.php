@@ -6,18 +6,21 @@ use App\Views\EntradaCrearView;
 use Respect\Validation\Validator as v;
 use App\Models\Logica\ProductoService;
 use App\Views\ExcelCompras;
+use App\Models\Logica\FacturaService;
 
 class EntradaCrearController{
     private $entradaService;
     private $view;
     private $productoService;
     private $excelCompras;
+    private $facturaService;
 
     public function __construct(){
         $this -> entradaService = new EntradaService();
         $this -> view = new EntradaCrearView();
         $this -> productoService = new ProductoService();
         $this ->excelCompras = new ExcelCompras();
+        $this ->facturaService = new FacturaService();
 
     }
 
@@ -53,6 +56,7 @@ class EntradaCrearController{
 
     public function excelEntradas(){
         $entradas = $this ->entradaService ->mostrarEntradas();
-        $this ->excelCompras ->render($entradas);
+        $ventas = $this -> facturaService ->excelVentas();
+        $this ->excelCompras ->render($entradas, $ventas);
     }
 }

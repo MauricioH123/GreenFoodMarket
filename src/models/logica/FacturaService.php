@@ -25,4 +25,8 @@ class FacturaService{
     public function mostrarTotalfacturas(){
         return $this ->facturaDAO ->facturasTotales();
     }
+
+    public function excelVentas(){
+        return $this ->facturaDAO ->ventasDiarias();
+    }
 }
