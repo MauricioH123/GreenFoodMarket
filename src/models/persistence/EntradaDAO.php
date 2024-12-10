@@ -1,5 +1,6 @@
 <?php
 namespace App\Models\Persistence;
+// require_once "/laragon/www/proyectos/GreenFoodMarket/vendor/autoload.php";
 
 use App\Models\Entidades\Entrada;
 use App\Database\Database;
@@ -71,3 +72,7 @@ class EntradaDAO{
         }
     }
 }
+
+// $d = new EntradaDAO();
+// print_r(
+// $d->mostrarDetalle());

@@ -46,4 +46,8 @@ class EntradaCrearController{
         $crearE = $this -> entradaService ->creacionDEntarda($id_producto, $cantidad_entrada, $precio_entrada, $fecha_entrada);
         $this -> mostrarFormulario($crearE);
     }
+
+    public function excelEntradas(){
+        $entradas = $this ->entradaService ->mostrarEntradas();
+    }
 }

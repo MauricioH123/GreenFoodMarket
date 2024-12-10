@@ -13,4 +13,8 @@ class EntradaService{
     public function creacionDEntarda($id_producto, $cantidad_entrada, $precio_entrada, $fecha_entrada){
         return $this -> entradaDAO ->crearEntrada($id_producto, $cantidad_entrada, $precio_entrada, $fecha_entrada);
     }
+
+    public function mostrarEntradas(){
+        return $this ->entradaDAO ->mostrarDetalle();    
+    }
 }
