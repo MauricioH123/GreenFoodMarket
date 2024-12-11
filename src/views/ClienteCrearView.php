@@ -95,7 +95,7 @@ class ClienteCrearView extends BaseView
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                <button type="submit" class="btn btn-primary">Guardar Cliente</button>
             </form>
         </div>
 <?php
