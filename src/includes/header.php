@@ -89,11 +89,7 @@
                                 Informes en Excel
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="index.php?action=comprasExcel">Informe de compras diarias</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="index.php">sd</a></li>
+                                <li><a class="dropdown-item" href="index.php?action=comprasExcel">Informe de compras y ventas diarias</a></li>
                             </ul>
                         </li>
                     </ul>
