@@ -51,10 +51,10 @@ class ExcelCompras extends BaseView
 
         // Enviar cabeceras HTTP para la descarga
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment; filename="compras.xlsx"');
+        header('Content-Disposition: attachment; filename="comprasYventas.xlsx"');
         header('Cache-Control: max-age=0');
 
-        // Crear archivo Excel y enviarlo al navegador
+        // Crear archivo Excel y enviarlo al navegadorr
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
         exit; // Detener la ejecución para evitar salida adicional
